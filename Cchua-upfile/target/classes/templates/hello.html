@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1.0,user-scalable=no" />
+    <title>Mould Backstage</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <!--<div id="loading">
+        <p>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+        </p>
+    </div>-->
+    <div class="main-container">
+        <div class="main-column">
+            <div class="logo-container">
+                <img src="logo.png" alt="LOGO" />
+            </div>
+            <div class="menu">
+                <ul class="menu-list">
+                    <li class="menu-item home menu-column" tabindex="0">
+                        <div class="title" tabindex="0">首页</div>
+                        <ul class="s-menu-list">
+                            <li class="s-menu-item" tabindex="0">test 1</li>
+                            <li class="s-menu-item" tabindex="0">test 2</li>
+                        </ul>
+                    </li>
+                    <li class="menu-item table" tabindex="0">
+                        <div class="title" tabindex="0">表格查看</div>
+                    </li>
+                </ul>
+            </div>
+            <!--<div class="mMainColumn">
+                <span class="bar" title="菜单栏"></span>
+                <div class="hMainColumn">
+                    <div class="hLogoContainer">
+                        <img src="logo.png" alt="LOGO" />
+                    </div>
+                    <div class="hMenuColumn">
+                        <ul class="hMenuList">
+                            <li class="hMenuItem chosen" name="index" tabindex="0">首页</li>
+                            <li class="hMenuItem" name="xxgl" tabindex="0">信息管理</li>
+                            <li class="hMenuItem" name="sssz" tabindex="0">赛事设置</li>
+                            <li class="hMenuItem" name="cjgl" tabindex="0">成绩管理</li>
+                            <li class="hMenuItem" name="qxsz" tabindex="0">权限设置</li>
+                            <li class="hMenuItem" name="bmsz" tabindex="0">报名设置</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+        <div class="support">
+            <div class="top-support">
+                <!--<div class="refresh" title="刷新"></div>-->
+                <div class="user-info">
+                    <div class="user-main">
+                        <span class="username">管理员admin</span>
+                        <span class="main-control">
+                            <span>登出</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="support-container index-support">
+
+                <div class="form-container">
+                    <div class="form">
+                        <div class="form-tr">
+                            <div class="form-td">模具信息明细表添加</div>
+                        </div>
+                        <div class="form-tr">
+                            <div class="form-td">模具编号</div>
+                            <div class="form-td input">
+                                <input type="text" id="mouldNumber" name="mouldNumber" placeholder="模具编号" />
+                            </div>
+                            <div class="form-td">电子标签NO</div>
+                            <div class="form-td input">
+                                <input type="text" id="RFID" name="RFID" placeholder="电子标签NO" />
+                            </div>
+                            <div class="form-td">产品名称</div>
+                            <div class="form-td input">
+                                <input type="text" id="productName" name="productName" placeholder="产品名称" />
+                            </div>
+                        </div>
+                        <div class="form-tr">
+                            <div class="form-td">客户名称</div>
+                            <div class="form-td input">
+                                <input type="text" id="customerName" name="customerName" placeholder="客户名称" />
+                            </div>
+                            <div class="form-td">模腔数</div>
+                            <div class="form-td input">
+                                <input type="text" id="cavityNumber" name="cavityNumber" placeholder="模腔数" />
+                            </div>
+                            <div class="form-td">模具寿命</div>
+                            <div class="form-td input">
+                                <input type="text" id="mouldLife" name="mouldLife" placeholder="模具寿命" />
+                            </div>
+                        </div>
+                        <div class="form-tr">
+                            <div class="form-td">长</div>
+                            <div class="form-td input">
+                                <input type="text" id="length" name="length" placeholder="长" />
+                            </div>
+                            <div class="form-td">宽</div>
+                            <div class="form-td input">
+                                <input type="text" id="width" name="width" placeholder="宽" />
+                            </div>
+                            <div class="form-td">高</div>
+                            <div class="form-td input">
+                                <input type="text" id="height" name="height" placeholder="高" />
+                            </div>
+                        </div>
+                        <div class="form-tr">
+                            <div class="form-td">适用机型</div>
+                            <div class="form-td input">
+                                <input type="text" id="applicableModels" name="applicableModels" placeholder="适用机型" />
+                            </div>
+                            <div class="form-td">使用要求</div>
+                            <div class="form-td input">
+                                <input type="text" id="useRequirements" name="useRequirements" placeholder="使用要求" />
+                            </div>
+                            <div class="form-td">状态</div>
+                            <div class="form-td input">
+                                <input type="text" id="status" name="status" placeholder="状态" />
+                            </div>
+                        </div>
+                        <div class="form-tr">
+                            <div class="form-td" style="line-height: 65px;">备注</div>
+                            <div class="form-td textarea">
+                                <textarea id="remarks" name="remarks" placeholder="备注" spellcheck="false"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-support">
+                        <input type="button" class="submit" onclick="Submit()" value="提交" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="mould.min.js"></script>
+    <!--<script type="text/javascript" src="script.js"></script>-->
+    <script type="text/javascript">
+        (function () {
+            if (_m('.s-menu-list').length != undefined) {
+                for (var i = 0; i < _m('.s-menu-list').length; i++) {
+                    _m('.s-menu-list')[i].style.cssText += 'margin-top: -' + _m('.s-menu-list')[i].offsetHeight + 'px';
+                }
+            } else {
+                _m('.s-menu-list').style.cssText += 'margin-top: -' + _m('.s-menu-list').offsetHeight + 'px';
+            };
+            for (var i = 0; i < _m('.menu-item').length; i++) {
+                _m('.menu-item')[i].onclick = function () {
+                    if (!_M(this).hasClass('chosen')) {
+                        if (_m('.menu-item.chosen')) {
+                            _M(_m('.menu-item.chosen')).removeClass('chosen');
+                        };
+                        _M(this).addClass('chosen');
+                    };
+                };
+                _M(_m('.menu-item')[i]).child('.title').onclick = function () {
+                    var Mi = _M(this).parent();
+                    if (_M(Mi).child('.s-menu-list')) {
+                        _M(Mi).toggleClass('menu-open');
+                    };
+                };
+            };
+            for (var n = 0; n < _m('.s-menu-item').length; n++) {
+                _m('.s-menu-item')[n].onclick = function () {
+                    if (!_M(this).hasClass('chosen')) {
+                        if (_m('.s-menu-item.chosen')) {
+                            _M(_m('.s-menu-item.chosen')).removeClass('chosen');
+                        };
+                        _M(this).addClass('chosen');
+                    };
+                }
+            };
+        })();
+
+        var Submit = function () {
+            _Ajax({
+                url: 'http://10.3.15.212:8080/add',
+                method: 'post',
+                asnyc: 'true',
+                data: {
+                    mouldNumber: _m('#mouldNumber').value,
+                    RFID: _m('#RFID').value,
+                    productName: _m('#productName').value,
+                    customerName: _m('#customerName').value,
+                    length: _m('#length').value,
+                    width: _m('#width').value,
+                    height: _m('#height').value,
+                    cavityNumber: _m('#cavityNumber').value,
+                    applicableModels: _m('#applicableModels').value,
+                    useRequirements: _m('#useRequirements').value,
+                    mouldLife: _m('#mouldLife').value,
+                    status: _m('#status').value,
+                    remarks: _m('#remarks').value,
+                },
+                success: function (r) {
+                    console.log('success');
+                },
+                fail: function (error) {
+                    console.error('error!');
+                }
+            });
+        };
+    </script>
+</body>
+</html>

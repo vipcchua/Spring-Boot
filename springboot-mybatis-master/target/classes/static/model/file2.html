@@ -1,0 +1,26 @@
+<html>
+<body>
+
+<p>单文件上传</p>
+<!-- <form method="POST" enctype="multipart/form-data" action="/upload">
+    File to upload: <input type="file" name="file"></input><br/>
+    <input type="submit" value="Upload"></input>
+    Press here to upload the file!
+</form> -->
+
+<form action="/upload" method="post" enctype="multipart/form-data">  
+   
+    <label>头 像1</label><input type="file" name="file"/><br/>  
+    <label>头 像2</label><input type="file" name="file"/><br/>  
+    <input type="submit" value="提  交"/>  
+</form>  
+
+<p>多文件上传</p>
+<form method="POST" enctype="multipart/form-data" action="/batch/upload">
+    File to upload: <input type="file" name="file"></input><br/>
+    File to upload: <input type="file" name="file"></input><br/>
+    <input type="submit" value="Upload"></input>
+    Press here to upload the file!
+</form>
+</body>
+</html>

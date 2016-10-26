@@ -115,6 +115,9 @@ public class Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 		logger.info("SpringBoot Start Success");
+		logger.info("Author:Cchua");
+		logger.info("GitHub:https://github.com/vipcchua");
+		logger.info("Blog:weibo.com/vipcchua");
 	}
 
 }

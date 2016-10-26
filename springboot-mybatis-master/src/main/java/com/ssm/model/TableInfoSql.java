@@ -52,6 +52,10 @@ public class TableInfoSql {
 				if (tableInfo.getRemarks() != null) {
 					SET("table_info.remarks = #{remarks}");
 				}
+				
+				if (tableInfo.getRemarks() != null) {
+					SET("table_info.remarks = #{photo}");
+				}
 	
 				
 				WHERE("id = #{id}");

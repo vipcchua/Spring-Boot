@@ -34,7 +34,7 @@ public interface TableInfoMapper {
 
 	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},#{length},"
 			+ "#{width},#{height},#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
-			+ "#{mouldLife},#{status}," + "#{remarks}  WHERE table_info.id= #{id}")
+			+ "#{mouldLife},#{status}," + "#{remarks},#{photo}  WHERE table_info.id= #{id}")
 	public void udtableinfos(TableInfo tableinfo);	
 	
 	@UpdateProvider(type = TableInfoSql.class, method = "UpdateTableInfo")
@@ -70,7 +70,7 @@ public interface TableInfoMapper {
 
 	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},#{length},"
 			+ "#{width},#{height},#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
-			+ "#{mouldLife},#{status}," + "#{remarks})")
+			+ "#{mouldLife},#{status}," + "#{remarks},#{photo})")
 	public void addEmployeer(TableInfo tableinfo);
 
 

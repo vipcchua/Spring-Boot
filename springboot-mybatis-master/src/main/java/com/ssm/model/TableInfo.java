@@ -1,5 +1,7 @@
 package com.ssm.model;
 
+import java.util.Date;
+
 public class TableInfo {
     /**
     * 序号
@@ -25,21 +27,6 @@ public class TableInfo {
     * 客户名称
     */
     private String customerName;
-
-    /**
-    * 长
-    */
-    private Double length;
-
-    /**
-    * 宽
-    */
-    private Double width;
-
-    /**
-    * 高
-    */
-    private Double height;
 
     /**
     * 模腔数
@@ -71,10 +58,17 @@ public class TableInfo {
     */
     private String remarks;
 
+    /**
+    * 模具图片
+    */
     private String photo;
-    
-    
-    
+
+    private String documentation;
+
+    private String excel;
+
+    private Date updateDate;
+
     public String getId() {
         return id;
     }
@@ -113,30 +107,6 @@ public class TableInfo {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
-    }
-
-    public Double getLength() {
-        return length;
-    }
-
-    public void setLength(Double length) {
-        this.length = length;
-    }
-
-    public Double getWidth() {
-        return width;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-    public Double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
     }
 
     public Long getCavityNumber() {
@@ -187,11 +157,35 @@ public class TableInfo {
         this.remarks = remarks;
     }
 
-	public String getPhoto() {
-		return photo;
-	}
+    public String getPhoto() {
+        return photo;
+    }
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getDocumentation() {
+        return documentation;
+    }
+
+    public void setDocumentation(String documentation) {
+        this.documentation = documentation;
+    }
+
+    public String getExcel() {
+        return excel;
+    }
+
+    public void setExcel(String excel) {
+        this.excel = excel;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
 }

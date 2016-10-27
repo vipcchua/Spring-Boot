@@ -32,8 +32,8 @@ public interface TableInfoMapper {
 	List<TableInfo> selectmodeuid (@Param("id") String string);
 	
 
-	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},#{length},"
-			+ "#{width},#{height},#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
+	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},"
+			+ "#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks},#{photo}  WHERE table_info.id= #{id}")
 	public void udtableinfos(TableInfo tableinfo);	
 	
@@ -57,8 +57,8 @@ public interface TableInfoMapper {
 	
 	
 
-	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},#{length},"
-			+ "#{width},#{height},#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
+	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},"
+			+ "#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks})")
 	int insertmould(@Param("id") String uuid, @Param("mouldNumber") String mouldNumber, @Param("rfid") String rfid,
 			@Param("productName") String productName, @Param("customerName") String customerName,
@@ -68,8 +68,8 @@ public interface TableInfoMapper {
 			@Param("status") String status, @Param("remarks") String remarks);
 
 
-	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},#{length},"
-			+ "#{width},#{height},#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
+	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},"
+			+ "#,#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks},#{photo})")
 	public void addEmployeer(TableInfo tableinfo);
 

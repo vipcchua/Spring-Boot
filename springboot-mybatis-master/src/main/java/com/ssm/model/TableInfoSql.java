@@ -22,15 +22,7 @@ public class TableInfoSql {
 				if (tableInfo.getCustomerName() != null) {
 					SET("table_info.customer_name = #{customerName}");
 				}
-				if (tableInfo.getLength() != null) {
-					SET("table_info.length = #{length}");
-				}
-				if (tableInfo.getWidth() != null) {
-					SET("table_info.width = #{width}");
-				}
-				if (tableInfo.getHeight() != null) {
-					SET("table_info.height = #{height}");
-				}
+				
 				if (tableInfo.getCavityNumber() != null) {
 					SET("table_info.cavity_number = #{cavityNumber}");
 				}
@@ -57,6 +49,9 @@ public class TableInfoSql {
 					SET("table_info.remarks = #{photo}");
 				}
 	
+				if (tableInfo.getUpdateDate() != null) {
+					SET("table_info.update_date = #{updateDate}");
+				}
 				
 				WHERE("id = #{id}");
 			}
@@ -90,15 +85,7 @@ public class TableInfoSql {
 			if (tableInfo.getCustomerName() != null) {
 				WHERE("table_info.customer_name = #{customerName}");
 			}
-			if (tableInfo.getLength() != null) {
-				WHERE("table_info.length = #{length}");
-			}
-			if (tableInfo.getWidth() != null) {
-				WHERE("table_info.width = #{width}");
-			}
-			if (tableInfo.getHeight() != null) {
-				WHERE("table_info.height = #{height}");
-			}
+			
 			if (tableInfo.getCavityNumber() != null) {
 				WHERE("table_info.cavity_number = #{cavityNumber}");
 			}
@@ -119,6 +106,8 @@ public class TableInfoSql {
 			
 			if (tableInfo.getRemarks() != null) {
 				WHERE("table_info.remarks = #{remarks}");
+			}	if (tableInfo.getUpdateDate() != null) {
+				SET("table_info.update_date = #{updateDate}");
 			}
 						
 			}}.toString();  

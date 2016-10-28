@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<title>TEST</title>
+<script type="text/javascript" src="js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="js/RSA.js"></script>
+<script type="text/javascript" src="js/BigInt.js"></script>
+<script type="text/javascript" src="js/Barrett.js"></script>
+<script type="text/javascript" src="js/jQuery.md5.js"></script>
+<style type="text/css">
+</style>
+</head>
+<body>
+	<form id="form" name="form" action="LoginServlet" method="post">
+		<input id="pwd" name="" type="text" value="" />
+		<input id="pwdRsa" name="pwd" type="hidden" value="" />
+		<input type="button" value="登录" onclick="ckSub()" />
+	</form>
+	<script type="text/javascript">
+	function ckSub(){
+		// 密码生成md5
+		var pwd = $.md5($("#pwd").val());
+		
+		// 对md5用rsa加密
+		setMaxDigits(130);
+		var key  = new RSAKeyPair("${e}","","${m}");
+		var result = encryptedString(key, pwd);
+		
+		$("#pwdRsa").val(result);
+		$("#form").submit();
+	}
+	</script>
+</body>
+</html>

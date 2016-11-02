@@ -25,8 +25,27 @@ public class TableUser {
     * 角色
     */
     private String role;
+    
+    
+    
+    private String enabled;
+    
+    
+    
+    
+    
+    
+    
 
-    public String getId() {
+    public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getId() {
         return id;
     }
 

@@ -112,6 +112,25 @@ public class Application {
 //
 //	}
 	
+	
+/*
+	@Configuration
+	public class MvcConfiguration extends WebMvcConfigurerAdapter {
+
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry.addResourceHandler("/ssmimg/**").addResourceLocations("file:D:/ssmimg/");
+			super.addResourceHandlers(registry);
+	}*/
+
+	
+	
+	
+	
+	
+	
+	
+	
 	 @Bean
 	 public EmbeddedServletContainerCustomizer containerCustomizer(){
 	        return new EmbeddedServletContainerCustomizer() {

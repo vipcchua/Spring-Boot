@@ -106,7 +106,8 @@ public class TableInfoSql {
 			
 			if (tableInfo.getRemarks() != null) {
 				WHERE("table_info.remarks = #{remarks}");
-			}	if (tableInfo.getUpdateDate() != null) {
+			}	
+			if (tableInfo.getUpdateDate() != null) {
 				SET("table_info.update_date = #{updateDate}");
 			}
 						
@@ -132,6 +133,77 @@ public class TableInfoSql {
 	
 	
 	
+	
+	
+	
+public String InsertTableInfo(final TableInfo tableInfo) {
+	
+	
+	return new SQL() {{  
+		INSERT_INTO("table_info");  
+	
+		
+		if (tableInfo.getId()!= null) {  
+
+			
+			VALUES("id", "#{id}"); 
+
+		}  		
+		if (tableInfo.getMouldNumber() != null) {
+			VALUES("table_info.mould_number ", " #{mouldNumber}");
+	
+		}
+	
+		if (tableInfo.getRfid() != null) {
+			VALUES("table_info.rfid ", " #{Rfid}");
+		}
+		if (tableInfo.getProductName()!= null) {
+			VALUES("table_info.product_name ", " #{productName}");
+		}
+		if (tableInfo.getCustomerName() != null) {
+			VALUES("table_info.customer_name", " #{customerName}");
+		}
+		
+		if (tableInfo.getCavityNumber() != null) {
+			VALUES("table_info.cavity_number", " #{cavityNumber}");
+		}
+		if (tableInfo.getApplicableModels() != null) {
+			VALUES("table_info.applicable_models ", "#{applicableModels}");
+		}
+		if (tableInfo.getUseRequirements() != null) {
+			VALUES("table_info.use_requirements ", " #{useRequirements}");
+		}
+		
+		if (tableInfo.getMouldLife() != null) {
+			VALUES("table_info.mould_life ", " #{mouldLife}");
+		}
+		
+		if (tableInfo.getStatus() != null) {
+			VALUES("table_info.status ", "#{status}");
+		}
+		
+		if (tableInfo.getRemarks() != null) {
+			VALUES("table_info.remarks ", " #{remarks}");
+		}	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		}}.toString();  
+		} 
+		
+		
+
 	
 	
 	

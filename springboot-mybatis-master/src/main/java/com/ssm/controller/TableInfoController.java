@@ -69,10 +69,54 @@ public class TableInfoController {
 		json.get(0).setId(uuid());
 		tableInfoMapper.addEmployeer(json.get(0));
 
+		
+		
+		
 		return json;
 
 	}
 
+	
+	@RequestMapping("/InsertTableInfo")
+	@ResponseBody
+	public List<TableInfo> InsertTableInfo(@RequestBody String insertmodelinfo, Model model) {
+
+		String jsonStr = "[{'mouldNumber':'12','rfid':'12','productName':'12','customerName':'12','length':'12','width':'12','height':'12','cavityNumber':'12','applicableModels':'12','useRequirements':'12','mouldLife':'12','status':'12','remarks':'12'}]";
+
+		/*List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+		json.get(0).setId(uuid());
+		tableInfoMapper.addEmployeer(json.get(0));*/
+
+		
+		
+		List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+
+		
+		tableInfoMapper.InsertTableInfo(json.get(0));
+
+		return json;
+		
+		
+		
+		
+		
+		
+		
+		
+	
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 在用 */
 	@RequestMapping("/udtableinfo")
 	@ResponseBody

@@ -40,9 +40,7 @@ public interface TableInfoMapper {
 	@UpdateProvider(type = TableInfoSql.class, method = "UpdateTableInfo")
 	public void Udtableinfo(TableInfo tableInfo);
 		
-	@SelectProvider(type = TableInfoSql.class, method = "SelectTableInfo")  
-	public void SlTableInfo(TableInfo tableInfo);
-	
+
 	
 	/*
 	int udtableinfo(TableInfoUpdate tableInfoUpdate);  
@@ -71,8 +69,44 @@ public interface TableInfoMapper {
 	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},"
 			+ "#,#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks},#{photo})")
+	public void addEmployeers(TableInfo tableinfo);
+
+
+	
+	
+	@SelectProvider(type = TableInfoSql.class, method = "SelectTableInfo")  
+	public void SlTableInfo(TableInfo tableInfo);
+	
+	
+	
+	
+	
+	
+	@InsertProvider(type = TableInfoSql.class, method = "InsertTableInfo")  
+	
+	public void InsertTableInfo(TableInfo tableInfo);
+	
+	
+	
+	
+	
+	@Insert("INSERT INTO table_info(table_info.id) value (#{id}) ")
 	public void addEmployeer(TableInfo tableinfo);
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 }

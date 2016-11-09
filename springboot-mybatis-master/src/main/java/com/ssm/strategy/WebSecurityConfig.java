@@ -16,8 +16,12 @@ import com.ssm.strategy.*;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/*@Autowired*/
+/*	private Myprovider provider;*/
+	
+	
 	@Autowired
-	private Myprovider provider;
+	private CustomUserDetailsService userDetailsService;
 	
 	@Autowired
 	DataSource dataSource;
@@ -64,26 +68,32 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		
 
-		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/fonts/**", "/image/**", "/js/**", "/")
-				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and()
-				.logout().permitAll();
+		http.csrf()
+		.disable()
+		.authorizeRequests()
+		.antMatchers("/css/**", "/fonts/**", "/image/**", "/js/**", "/","model","modle").permitAll()
+				.anyRequest().authenticated().and()
+				.formLogin()
+				.loginPage("/login")
+				.permitAll()
+				.and()
+				.logout()
+				.permitAll();
 		
 		
 		
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//将验证过程交给自定义验证工具
-	/*	auth.authenticationProvider(provider);
-	*/
-	
-	
-	
+		/*auth.authenticationProvider(provider);*/
 
-	auth.jdbcAuthentication().dataSource(dataSource)
+		auth.userDetailsService(userDetailsService);	
+
+/*	auth.jdbcAuthentication().dataSource(dataSource)
 		.usersByUsernameQuery("select username,password,enabled from table_user where username=?")
-		.authoritiesByUsernameQuery("select username, role from table_user where username=?");
+		.authoritiesByUsernameQuery("select username, role from table_user where username=?");*/
 }
 	
 	

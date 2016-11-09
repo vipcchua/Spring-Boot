@@ -83,15 +83,22 @@ public interface TableInfoMapper {
 	
 	
 	@InsertProvider(type = TableInfoSql.class, method = "InsertTableInfo")  
-	
+	@Options(useGeneratedKeys=true, keyProperty="tutorId") 
 	public void InsertTableInfo(TableInfo tableInfo);
 	
 	
 	
 	
 	
-	@Insert("INSERT INTO table_info(table_info.id) value (#{id}) ")
+	@Insert("INSERT INTO table_info(table_info.id,table_info.rfid,table_info.product_name,table_info.customer_name) "
+			+ "value (#{id},#{rfid},#{productName},#{customerName}) ")
 	public void addEmployeer(TableInfo tableinfo);
+
+
+	
+	
+	
+	public TableInfoMapper findByName(String username);
 
 	
 	

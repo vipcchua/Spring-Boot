@@ -148,14 +148,18 @@ public String InsertTableInfo(final TableInfo tableInfo) {
 			
 			VALUES("id", "#{id}"); 
 
-		}  		
+		}  	
+		
+		
+		
 		if (tableInfo.getMouldNumber() != null) {
 			VALUES("table_info.mould_number ", " #{mouldNumber}");
+			
 	
 		}
 	
 		if (tableInfo.getRfid() != null) {
-			VALUES("table_info.rfid ", " #{Rfid}");
+			VALUES("table_info.rfid ", " #{rfid}");
 		}
 		if (tableInfo.getProductName()!= null) {
 			VALUES("table_info.product_name ", " #{productName}");
@@ -187,9 +191,20 @@ public String InsertTableInfo(final TableInfo tableInfo) {
 		}	
 
 		
+		if (tableInfo.getRemarks() != null) {
+			VALUES("table_info.photo ", " #{photo}");
+		}	
+
 		
+		if (tableInfo.getRemarks() != null) {
+			VALUES("table_info.documentation ", " #{documentation}");
+		}	
+
 		
-		
+		if (tableInfo.getUpdateDate() != null) {
+			VALUES("table_info.updata_date ", " #{updataDate}");
+		}	
+
 		
 		
 		

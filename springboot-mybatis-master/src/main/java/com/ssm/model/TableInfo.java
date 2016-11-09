@@ -67,7 +67,7 @@ public class TableInfo {
 
     private String excel;
 
-    private Date updateDate;
+    private Date updataDate;
 
     public String getId() {
         return id;
@@ -180,12 +180,12 @@ public class TableInfo {
     public void setExcel(String excel) {
         this.excel = excel;
     }
-
+ 
     public Date getUpdateDate() {
-        return updateDate;
+        return updataDate;
     }
 
     public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+        this.updataDate = updateDate;
     }
 }

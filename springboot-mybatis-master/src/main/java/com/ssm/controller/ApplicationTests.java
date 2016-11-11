@@ -1,4 +1,4 @@
- package com.ssm.controller;
+package com.ssm.controller;
 
 import com.ssm.model.User;
 import com.ssm.Application;

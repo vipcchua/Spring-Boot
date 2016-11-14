@@ -6,8 +6,8 @@ import java.net.URL;
   
 public class test {  
   
-    final static String url = "http://10.3.13.212:8080/selectmodelall";  
-    final static String params = ""
+    final static String url = "http://10.3.13.212:8080/selectmodeid";  
+    final static String params = "[{'mouldNumber':'12'}]"
 ;
   
     /** 

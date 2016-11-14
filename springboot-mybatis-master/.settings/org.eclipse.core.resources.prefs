@@ -4,4 +4,5 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/resources/templates/hello.html=UTF-8
 encoding//src/test/java=UTF-8
+encoding//src/test/java/RSATester.java=UTF-8
 encoding/<project>=UTF-8

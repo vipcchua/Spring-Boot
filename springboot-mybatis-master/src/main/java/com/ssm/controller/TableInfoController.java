@@ -40,6 +40,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ssm.Application;
+import com.ssm.CchuaProperties;
+import com.ssm.FileUploadController;
 import com.ssm.mapper.TableInfoMapper;
 
 import com.ssm.model.TableInfo;
@@ -58,6 +60,15 @@ public class TableInfoController {
 	@Resource
 	private Application application;
 
+	
+	
+	
+	
+
+
+	
+	
+	
 	/* 在用 */
 	@RequestMapping("/insertmodelinfo")
 	@ResponseBody
@@ -69,21 +80,66 @@ public class TableInfoController {
 		json.get(0).setId(uuid());
 		tableInfoMapper.addEmployeer(json.get(0));
 
+		
+		
+		
 		return json;
 
 	}
 
+	
+	@RequestMapping("/inserttableinfo")
+	@ResponseBody
+	public List<TableInfo> InsertTableInfo(@RequestBody String insertmodelinfo, Model model) {
+
+		String jsonStr = "[{'mouldNumber':'12','rfid':'12','productName':'12','customerName':'12','length':'12','width':'12','height':'12','cavityNumber':'12','applicableModels':'12','useRequirements':'12','mouldLife':'12','status':'12','remarks':'12'}]";
+
+		/*List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+		json.get(0).setId(uuid());
+		tableInfoMapper.addEmployeer(json.get(0));*/
+
+		
+		
+		List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+		json.get(0).setId(uuid());
+		
+		
+		tableInfoMapper.InsertTableInfo(json.get(0));
+
+		return json;
+		
+		
+		
+		
+		
+		
+		
+		
+	
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 在用 */
 	@RequestMapping("/udtableinfo")
 	@ResponseBody
 	public List<TableInfo> udtableinfo(@RequestBody String insertmodelinfo, Model model) {
 
-		String jsonStr = "[{'id':'d30363d9-fd48-4ad8-8162-b588443b44b4','mouldNumber':'13'}]";
+		String jsonStr = "[{'id':'5488b55d-7be0-48a2-acea-6683df775fd7','mouldNumber':'13'}]";
 
-		List<TableInfo> json = JSON.parseArray(jsonStr, TableInfo.class);
-		json.get(0).setId(uuid());
-		System.out.println(json.get(0));
-		tableInfoMapper.udtableinfo(json.get(0));
+		List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+
+	
+		tableInfoMapper.Udtableinfo(json.get(0));
 
 		return json;
 
@@ -109,7 +165,7 @@ public class TableInfoController {
 	/* 在用 */
 	@RequestMapping(value = "/selectmodeid", method = RequestMethod.POST)
 	@ResponseBody
-	public List<TableInfo> selectmodel(@RequestBody String selectallmodel) {
+	public List<TableInfo> selectmodel(@RequestBody String selectallmodel, Model model) {
 
 		String text = "[{'mouldNumber':'12'}]";
 		/*
@@ -124,6 +180,28 @@ public class TableInfoController {
 
 		return user;
 	}
+	
+	
+	
+	@RequestMapping(value = "/selectmodeuid", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TableInfo> selectmodeuid(@RequestBody String selectallmodel, Model model) {
+
+		String text = "[{'id':'8de27004-d087-416b-891a-af88250204bc'}]";
+
+
+		List<TableInfo> json = JSON.parseArray(selectallmodel, TableInfo.class);
+
+		List<TableInfo> TableInfo = tableInfoMapper.selectmodeuid(json.get(0).getId());
+
+		return TableInfo;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

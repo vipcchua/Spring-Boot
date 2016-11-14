@@ -7,10 +7,14 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mysql.cj.api.Session;
+import com.ssm.FileUploadController;
 import com.ssm.mapper.TableInfoMapper;
 import com.ssm.mapper.UserMapper;
 import com.ssm.model.TableInfo;
@@ -37,5 +41,11 @@ public class Test {
 		tableInfoMapper.addEmployeer(json.get(0));
 		session.commit();
 	}*/
-    
+ 
+
+	
+
+	
+	
+	
 }

@@ -1,24 +1,51 @@
-ï»¿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-       <form method="POST" enctype="multipart/form-data" action="/upload"> 
-           <p>æ–‡ä»¶ï¼š<input type="file" name="file" /></p>
-           <p><input type="submit" value="ä¸Šä¼ " /></p>
-       </form>
-       
-       
-       
-       
-       <p>å¤šæ–‡ä»¶ä¸Šä¼ </p>
-<form method="POST" enctype="multipart/form-data" action="/batch/upload">
-    File to upload: <input type="file" name="file"></input><br/>
+<html>
+<body>
+
+<p>µ¥ÎÄ¼þÉÏ´«</p>
+<!-- <form method="POST" enctype="multipart/form-data" action="/upload">
     File to upload: <input type="file" name="file"></input><br/>
     <input type="submit" value="Upload"></input>
     Press here to upload the file!
-</form>
-    </body>
+</form> -->
+
+    
+        <form action="/uploads" method="post"  
+        enctype="multipart/form-data">  
+        <p>  
+            Ñ¡Ôñ¶à¸öÎÄ¼þ:<input type="file" name="files" multiple="true">  
+        <p>  
+            Ñ¡ÔñÎÄ¼þ:<input type="file" name="files">  
+        <p>  
+            Ñ¡ÔñÎÄ¼þ:<input type="file" name="files">  
+        <p>  
+            <input type="submit" value="Ìá½»">  
+    </form> 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<!--  <form name="userForm2" action="/upload" enctype="multipart/form-data" method="post">  
+      <p>ÎÄ¼þ1£º<input type="file" name="file" /></p>  
+           <p>ÎÄ¼þ2£º<input type="file" name="file" /></p>  
+           <p>ÎÄ¼þ3£º<input type="file" name="file" /></p>  
+           <p><input type="submit" value="ÉÏ´«" /></p>  
+          
+          
+    </form> 
+    
+    
+        <form method="POST" enctype="multipart/form-data" action="/batch/upload">   
+           <p>ÎÄ¼þ1£º<input type="file" name="file" /></p>  
+           <p>ÎÄ¼þ2£º<input type="file" name="file" /></p>  
+           <p>ÎÄ¼þ3£º<input type="file" name="file" /></p>  
+           <p><input type="submit" value="ÉÏ´«" /></p>  
+       </form>   -->
+
+       
+</body>
 </html>

@@ -61,13 +61,32 @@ public class TableInfo {
     /**
     * 模具图片
     */
-    private String photo;
+    private String mouldPictures;
 
-    private String documentation;
+    /**
+    * 注塑参照表
+    */
+    private String mouldingTable;
 
-    private String excel;
+    /**
+    * 产品材料信息
+    */
+    private String materialInfo;
 
-    private Date updataDate;
+    /**
+    * 作业指导书
+    */
+    private String operationGuiding;
+
+    /**
+    * 模具维保记录
+    */
+    private String maintenanceRecords;
+
+    /**
+    * 更新日期
+    */
+    private String updateDate;
 
     public String getId() {
         return id;
@@ -157,35 +176,55 @@ public class TableInfo {
         this.remarks = remarks;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getMouldPictures() {
+        return mouldPictures;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setMouldPictures(String mouldPictures) {
+        this.mouldPictures = mouldPictures;
     }
 
-    public String getDocumentation() {
-        return documentation;
+    public String getMouldingTable() {
+        return mouldingTable;
     }
 
-    public void setDocumentation(String documentation) {
-        this.documentation = documentation;
+    public void setMouldingTable(String mouldingTable) {
+        this.mouldingTable = mouldingTable;
     }
 
-    public String getExcel() {
-        return excel;
+    public String getMaterialInfo() {
+        return materialInfo;
     }
 
-    public void setExcel(String excel) {
-        this.excel = excel;
-    }
- 
-    public Date getUpdateDate() {
-        return updataDate;
+    public void setMaterialInfo(String materialInfo) {
+        this.materialInfo = materialInfo;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updataDate = updateDate;
+    public String getOperationGuiding() {
+        return operationGuiding;
     }
+
+    public void setOperationGuiding(String operationGuiding) {
+        this.operationGuiding = operationGuiding;
+    }
+
+    public String getMaintenanceRecords() {
+        return maintenanceRecords;
+    }
+
+    public void setMaintenanceRecords(String maintenanceRecords) {
+        this.maintenanceRecords = maintenanceRecords;
+    }
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
+	}
+
+
+
+
 }

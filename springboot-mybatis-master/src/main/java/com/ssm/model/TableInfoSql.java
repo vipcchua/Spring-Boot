@@ -44,14 +44,43 @@ public class TableInfoSql {
 				if (tableInfo.getRemarks() != null) {
 					SET("table_info.remarks = #{remarks}");
 				}
-				
-				if (tableInfo.getRemarks() != null) {
-					SET("table_info.remarks = #{photo}");
-				}
+	
 	
 				if (tableInfo.getUpdateDate() != null) {
 					SET("table_info.update_date = #{updateDate}");
 				}
+				
+				if (tableInfo.getMouldPictures() != null) {
+					SET("table_info.mould_pictures = #{mouldPictures}");
+				}
+				
+				
+				
+				if (tableInfo.getMouldingTable() != null) {
+					SET("table_info.moulding_table = #{mouldingTable}");
+				}
+				
+				
+				if (tableInfo.getMaterialInfo() != null) {
+					SET("table_info.material_info = #{materialInfo}");
+				}
+				
+				
+				if (tableInfo.getOperationGuiding() != null) {
+					SET("table_info.operation_guiding = #{operationGuiding}");
+				}
+				
+				
+				if (tableInfo.getMaintenanceRecords() != null) {
+					SET("table_info.maintenance_records = #{maintenanceRecords}");
+				}
+				
+
+				
+				
+				
+				
+				
 				
 				WHERE("id = #{id}");
 			}
@@ -107,9 +136,52 @@ public class TableInfoSql {
 			if (tableInfo.getRemarks() != null) {
 				WHERE("table_info.remarks = #{remarks}");
 			}	
+			
+			
+			
+			
+			
 			if (tableInfo.getUpdateDate() != null) {
-				SET("table_info.update_date = #{updateDate}");
+				WHERE("table_info.update_date = #{updateDate}");
 			}
+			
+			
+			if (tableInfo.getMouldPictures() != null) {
+				WHERE("table_info.mould_pictures = #{mouldPictures}");
+			}
+			
+			
+			
+			
+			
+			if (tableInfo.getMouldingTable() != null) {
+				WHERE("table_info.moulding_table = #{mouldingTable}");
+			}
+			
+			
+			if (tableInfo.getMaterialInfo() != null) {
+				WHERE("table_info.material_info = #{materialInfo}");
+			}
+			
+			
+			if (tableInfo.getOperationGuiding() != null) {
+				WHERE("table_info.operation_guiding = #{operationGuiding}");
+			}
+			
+			
+			if (tableInfo.getMaintenanceRecords() != null) {
+				WHERE("table_info.maintenance_records = #{maintenanceRecords}");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 						
 			}}.toString();  
 		
@@ -190,21 +262,38 @@ public String InsertTableInfo(final TableInfo tableInfo) {
 			VALUES("table_info.remarks ", " #{remarks}");
 		}	
 
+	
 		
-		if (tableInfo.getRemarks() != null) {
-			VALUES("table_info.photo ", " #{photo}");
-		}	
-
-		
-		if (tableInfo.getRemarks() != null) {
-			VALUES("table_info.documentation ", " #{documentation}");
-		}	
-
+	
 		
 		if (tableInfo.getUpdateDate() != null) {
-			VALUES("table_info.updata_date ", " #{updataDate}");
+			VALUES("table_info.update_date ", " #{updateDate}");
 		}	
 
+		if (tableInfo.getMouldPictures() != null) {
+			VALUES("table_info.mould_pictures ", " #{mouldPictures}");
+		}
+	
+		
+		
+		if (tableInfo.getMouldingTable() != null) {
+			VALUES("table_info.moulding_table ", " #{mouldingTable}");
+		}
+		
+		
+		if (tableInfo.getMaterialInfo() != null) {
+			VALUES("table_info.material_info ", " #{materialInfo}");
+		}
+		
+		
+		if (tableInfo.getOperationGuiding() != null) {
+			VALUES("table_info.operation_guiding ", "#{operationGuiding}");
+		}
+		
+		
+		if (tableInfo.getMaintenanceRecords() != null) {
+			VALUES("table_info.maintenance_records ", "#{maintenanceRecords}");
+		}
 		
 		
 		

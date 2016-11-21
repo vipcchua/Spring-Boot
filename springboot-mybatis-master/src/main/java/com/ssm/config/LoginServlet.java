@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
         // get 请求页面，只初始化公私钥
         makeKV(request);
 
-        request.getRequestDispatcher("/model/login.html").forward(request, response);
+        request.getRequestDispatcher("/login").forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -85,7 +85,7 @@ public class LoginServlet extends HttpServlet {
 
         makeKV(request);
 
-        request.getRequestDispatcher("/model/login.html").forward(request, response);
+        request.getRequestDispatcher("/login").forward(request, response);
     }
 
 }

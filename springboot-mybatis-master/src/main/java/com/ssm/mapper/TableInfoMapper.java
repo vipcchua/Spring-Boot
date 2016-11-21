@@ -34,7 +34,7 @@ public interface TableInfoMapper {
 
 	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},"
 			+ "#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
-			+ "#{mouldLife},#{status}," + "#{remarks},#{photo}  WHERE table_info.id= #{id}")
+			+ "#{mouldLife},#{status}," + "#{remarks}  WHERE table_info.id= #{id}")
 	public void udtableinfos(TableInfo tableinfo);	
 	
 	@UpdateProvider(type = TableInfoSql.class, method = "UpdateTableInfo")

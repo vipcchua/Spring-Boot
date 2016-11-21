@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,6 +45,9 @@ import javax.sql.DataSource;
 public class Application {
 	private static Logger logger = Logger.getLogger(Application.class);
 
+	 @Autowired  
+	 CchuaProperties CchuaProperties;
+	
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource dataSource() {
@@ -62,7 +66,7 @@ public class Application {
 		sqlSessionFactoryBean.getObject().getConfiguration().setMapUnderscoreToCamelCase(
 				true);/* 自动支持驼峰 table_Aaa -->--tableaaa */
 
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));
+		/*sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));*/
 		return sqlSessionFactoryBean.getObject();
 	}
 
@@ -117,16 +121,16 @@ public class Application {
 //	}
 	
 	
-/*
+
 	@Configuration
 	public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			registry.addResourceHandler("/ssmimg/**").addResourceLocations("file:D:/ssmimg/");
+			registry.addResourceHandler("/ssmimg/**").addResourceLocations("file:" +CchuaProperties.getUpfilePosition());
 			super.addResourceHandlers(registry);
-	}*/
-
+	}
+	}
 	
 	
 	

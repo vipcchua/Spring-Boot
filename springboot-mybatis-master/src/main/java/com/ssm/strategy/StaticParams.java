@@ -4,14 +4,17 @@ package com.ssm.strategy;
 public class StaticParams {
 	
 	public static class USERROLE {
-		public static final String ROLE_ADMIN ="ROLE_ADMIN";
-		public static final String ROLE_USER = "ROLE_USER";
+		public static final String ADMIN ="ADMIN";
+		public static final String USER = "USER";
 	}
 	
 	public static class PATHREGX {
 		
 		private final static String getPathRex(String path){
-			return "/"+path+"/**";
+			return "/"+path+"/**"  ;
+			
+			
+			
 		}
 		
 		public static final String VIEW = getPathRex(PATH.VIEW);
@@ -22,9 +25,19 @@ public class StaticParams {
 		public static final String JS = getPathRex(PATH.JS);
 		public static final String CSS = getPathRex(PATH.CSS);
 		public static final String IMG = getPathRex(PATH.IMG);
+		public static final String Fonts = getPathRex(PATH.Fonts);
+		public static final String Image = getPathRex(PATH.Image);
+		public static final String index = getPathRex(PATH.index);
+		public static final String data = getPathRex(PATH.data);
+		
 	}
 	
 	public static class PATH {
+		
+		public static String data;
+		public static String index;
+		public static final String Image = "image";
+		public static final String Fonts = "fonts";
 		public static final String VIEW = "view";
 		public static final String ADMIN = "admin";
 		public static final String API = "api";

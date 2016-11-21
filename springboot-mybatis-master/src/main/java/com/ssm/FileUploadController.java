@@ -136,7 +136,7 @@ public class FileUploadController {
 				if (!file.isEmpty()) {
 					try {
 						filename.put("Name" + i, name.toString());/* 把名字记录到一个对象里面 */
-						filenames.add(name.toString());
+						filenames.add(name.toString()+"."+prefix);
 
 						System.out.print("FilesssssssssnNewName:" + name);/* 获取源文件的名字 */
 						BufferedOutputStream stream = new BufferedOutputStream(

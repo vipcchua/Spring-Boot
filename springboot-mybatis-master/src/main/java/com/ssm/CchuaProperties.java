@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CchuaProperties {
 
 	 private String UpfilePosition;
+	 private String HtmlPosition;
 
 	public String getUpfilePosition() {
 		return UpfilePosition;
@@ -13,6 +14,14 @@ public class CchuaProperties {
 
 	public void setUpfilePosition(String upfilePosition) {
 		UpfilePosition = upfilePosition;
+	}
+
+	public String getHtmlPosition() {
+		return HtmlPosition;
+	}
+
+	public void setHtmlPosition(String htmlPosition) {
+		HtmlPosition = htmlPosition;
 	}    
 
 	

@@ -70,7 +70,7 @@ public class TableInfoController {
 	
 	
 	/* 在用 */
-	@RequestMapping("/insertmodelinfo")
+	/*@RequestMapping("/insertmodelinfo")
 	@ResponseBody
 	public List<TableInfo> insertmodelinfo(@RequestBody String insertmodelinfo, Model model) {
 
@@ -85,7 +85,7 @@ public class TableInfoController {
 		
 		return json;
 
-	}
+	}*/
 
 	
 	@RequestMapping("/inserttableinfo")
@@ -101,6 +101,7 @@ public class TableInfoController {
 		
 		
 		List<TableInfo> json = JSON.parseArray(insertmodelinfo, TableInfo.class);
+		
 		json.get(0).setId(uuid());
 		
 		

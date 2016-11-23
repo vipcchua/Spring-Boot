@@ -65,12 +65,12 @@ public interface TableInfoMapper {
 			@Param("useRequirements") String useRequirements, @Param("mouldLife") String mouldLife,
 			@Param("status") String status, @Param("remarks") String remarks);
 
-
+/*
 	@Insert("INSERT INTO table_info VALUES(#{id},#{mouldNumber},#{rfid},#{productName},#{customerName},"
 			+ "#,#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks},#{photo})")
 	public void addEmployeers(TableInfo tableinfo);
-
+*/
 
 	
 	

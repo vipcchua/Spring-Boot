@@ -19,20 +19,26 @@ public class HtmlStart {
     
 	  @RequestMapping("/")
 	    public String index() {
-        return "index";
+        return "index.html";
 	    }
 	  
 	  
 	    @RequestMapping("/file")
-    public String hello() {
-	        return "file";
+    public String file() {
+	        return "file.html";
 	    }
+	    
+	    @RequestMapping("/test")
+	    public String hello() {
+		        return "test.html";
+		    }
+		    
 	    
 	    
 	    @RequestMapping("/login")
 	    public String login() {
-	        System.out.println("撒的撒的很少是uf骄傲啥都if就偶是滴啊佛i啊哈哈赛欧粉红丝带配合的送皮肤上大佛皮1");
-	        return "login";
+	       /* System.out.println("撒的撒的很少是uf骄傲啥都if就偶是滴啊佛i啊哈哈赛欧粉红丝带配合的送皮肤上大佛皮1");*/
+	        return "/login";
 	    }
 //	    
 //	    

@@ -44,12 +44,12 @@ public class Myprovider implements AuthenticationProvider {
 		authentication.getPrincipal()
         );*/
 		
-		String b = (String) authentication.getCredentials();	
-
-		System.out.println("b"+b);
+		String username = authentication.getPrincipal().toString();	
+		String password = (String) authentication.getCredentials();	
+		System.out.println("username:"+username+"/n password:"+password);
   
 		
-    	List<TableUser> users = tableUserMapper.Loginusers(b);
+    	List<TableUser> users = tableUserMapper.Loginusers(username,password);
     	
 
 		if (users.size() == 0&& users!=null) {

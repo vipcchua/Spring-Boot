@@ -31,7 +31,7 @@ public class TableInfo {
     /**
     * 模腔数
     */
-    private Long cavityNumber;
+    private String cavityNumber;
 
     /**
     * 适用机型
@@ -128,11 +128,11 @@ public class TableInfo {
         this.customerName = customerName;
     }
 
-    public Long getCavityNumber() {
+    public String getCavityNumber() {
         return cavityNumber;
     }
 
-    public void setCavityNumber(Long cavityNumber) {
+    public void setCavityNumber(String cavityNumber) {
         this.cavityNumber = cavityNumber;
     }
 

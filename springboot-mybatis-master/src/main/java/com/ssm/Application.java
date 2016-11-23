@@ -133,6 +133,19 @@ public class Application {
 	}
 	
 	
+	@Configuration
+	public class MyHtml extends WebMvcConfigurerAdapter {
+
+		@Override
+		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+			registry.addResourceHandler("/**").addResourceLocations("file:" +CchuaProperties.getHtmlPosition());
+			super.addResourceHandlers(registry);
+	}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -176,6 +189,7 @@ public class Application {
 		logger.info("Author:Cchua");
 		logger.info("GitHub:https://github.com/vipcchua");
 		logger.info("Blog:weibo.com/vipcchua");
+		logger.info("EndUpdate:2016年11月23日11:15:46");
 	}
 
 }

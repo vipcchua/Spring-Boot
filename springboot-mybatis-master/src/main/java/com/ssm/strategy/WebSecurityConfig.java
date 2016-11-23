@@ -88,7 +88,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,StaticParams.PATHREGX.Image
 				,"/selectmodeid/**"
 				,"/ssmimg/data/**"
-				,"/insertmodelinfo/**"
+				,"/**"
 				)
 		
 		

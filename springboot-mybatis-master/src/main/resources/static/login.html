@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,height=device-height,maximum-scale=1.0,user-scalable=no" />
+    <meta name=”renderer” content=”webkit”>
+    <meta http-equiv=”X-UA-Compatible” content=”IE=Edge,chrome=1″>
+    <link rel="icon" href="/images/favicon.ico">
+    <title>模具后台登录页</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-box-sizing: border-box; outline: none; }
+        html, body { width: 100%; height: 100%; }
+        body { font-size: 15px; font-family: 'Microsoft YaHei'; overflow: hidden; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: #555; }
+        textarea { resize: none; }
+
+        .index-main { text-align: center; white-space: nowrap; height: 100%; }
+        .index-main:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; margin-right: -.25em; }
+        .index-main .index-main-body { padding: 0; min-height: 400px; display: inline-block; vertical-align: middle; text-align: left; white-space: normal; }
+        .index-main .index-main-body .sign-flow { text-align: center; }
+        .index-main .index-main-body .sign-flow .index-tab-navs { margin-bottom: 10px; font-size: 18px; text-align: center; }
+        .index-main .index-main-body .sign-flow .index-tab-navs .navs-slider { position: relative; display: inline-block; }
+        .index-main .index-main-body .sign-flow .index-tab-navs .navs-slider a { float: left; width: 4em; line-height: 35px; opacity: .7; -ms-filter: "alpha(Opacity=70)"; -webkit-transition: opacity .15s,color .15s; transition: opacity .15s,color .15s; }
+        .index-main .index-main-body .sign-flow .index-tab-navs .navs-slider a.active { opacity: 1; -ms-filter: "alpha(Opacity=100)"; color: #0f88eb; }
+        .index-main .index-main-body .sign-flow .index-tab-navs .navs-slider .navs-slider-bar { position: absolute; left: 0; bottom: 0; margin: 0 .8em; width: 2.4em; height: 2px; background: #0f88eb; -webkit-transition: left .15s ease-in; transition: left .15s ease-in; }
+        .index-main .index-main-body .sign-flow .index-tab-navs .navs-slider[data-active-index="1"] .navs-slider-bar { left: 4em; }
+        .index-main .index-main-body .sign-flow .view { float: none; margin: auto; width: 300px; text-align: left; font-size: 14px; display: none; }
+        .index-main .index-main-body .sign-flow .view.selected { display: block; }
+        .index-main .index-main-body .sign-flow .view .group-inputs { padding: 1px 0; border: 1px solid #d5d5d5; border-radius: 3px; }
+        .index-main .index-main-body .sign-flow .view .group-inputs .input-wrapper { position: relative; margin: 0; overflow: hidden; }
+        .index-main .index-main-body .sign-flow .view .group-inputs .input-wrapper + .input-wrapper { border-top: 1px solid #e8e8e8; }
+        .index-main .index-main-body .sign-flow .view .group-inputs .input-wrapper input { border: 0; border-radius: 0; box-shadow: none; background: #fff; padding: 1em .8em; width: 100%; margin: 0; line-height: 19px; color: #555; }
+        .index-main .index-main-body .sign-flow .view .button-wrapper { margin-top: 18px; }
+        .index-main .index-main-body .sign-flow .view .button-wrapper .sign-button { background: #0f88eb; box-shadow: none; border: 0; border-radius: 3px; line-height: 41px; color: #fff; display: block; padding: 0; width: 100%; font-size: 15px; text-align: center; text-shadow: 0 1px 1px rgba(0,0,0,.2); cursor: pointer; -webkit-tap-highlight-color: rgba(0,0,0,0); transition: background .15s; }
+        .index-main .index-main-body .sign-flow .view .button-wrapper .sign-button:hover { background: #55abed; }
+        .index-main .index-main-body .sign-flow .view-signup .captcha-container .captcha { width: 100px; height: 38px; top: 50%; right: .5em; margin-top: -19px; position: absolute; cursor: pointer; }
+
+        .particles { position: absolute; top: 0; z-index: -1; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div class="index-main">
+        <div class="index-main-body">
+            <div class="sign-flow">
+                <div class="index-tab-navs">
+                    <div class="navs-slider">
+                        <a href="#signup" class="">注册</a>
+                        <a href="#signin" class="">登录</a>
+                        <span class="navs-slider-bar"></span>
+                    </div>
+                </div>
+                <div class="view view-signup">
+                    <form method="post">
+                        <div class="group-inputs">
+                            <div class="name input-wrapper">
+                                <input type="text" name="name" placeholder="姓名" />
+                            </div>
+                            <div class="username input-wrapper">
+                                <input type="text" name="username" placeholder="用户名" />
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="password" name="password" placeholder="密码" />
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="text" name="captcha" placeholder="验证码" />
+                                <div class="captcha-container">
+                                    <img class="captcha" src="/images/captcha.png" title="看不清楚? 换一张." />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <input type="submit" class="sign-button submit" value="注册" />
+                        </div>
+                    </form>
+                </div>
+                <div class="view view-signin">
+                    
+                    
+                    <form method="post" 
+                    
+                    th:action="@{/login}" method="post"
+                    
+                    >
+                        <div class="group-inputs">
+                            <div class="username input-wrapper">
+                                <input type="text" name="username" placeholder="用户名" />
+                            </div>
+                            <div class="input-wrapper">
+                                <input type="password" name="password" placeholder="密码" />
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <input type="submit" class="sign-button submit" value="登录" />
+                        </div>
+                    </form>
+                    
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="particles">
+        <canvas class="particles-js-canvas-el" id="canvas" width="1903" height="949"></canvas>
+    </div>
+    <script type="text/javascript" src="/js/mould.min.js"></script>
+    <script type="text/javascript" src="/js/login.script.js"></script>
+</body>
+</html>

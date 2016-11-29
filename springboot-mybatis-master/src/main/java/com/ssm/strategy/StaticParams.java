@@ -1,5 +1,8 @@
 package com.ssm.strategy;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ssm.CchuaProperties;
 
 public class StaticParams {
 	
@@ -9,9 +12,10 @@ public class StaticParams {
 	}
 	
 	public static class PATHREGX {
-		
+	
 		private final static String getPathRex(String path){
-			return "/"+path+"/**"  ;
+	
+			return  "/"+path+"/**"  ;
 			
 			
 			

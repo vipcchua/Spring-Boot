@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		
 		System.err.println(username);
 		
-		List<TableUser> users = tableUserMapper.Loginusers(username,"123");	
+		List<TableUser> users = tableUserMapper.Loginusers(username);	
 		
 		System.out.println(users.size());
 		

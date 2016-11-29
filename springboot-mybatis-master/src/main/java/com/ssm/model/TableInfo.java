@@ -1,7 +1,5 @@
 package com.ssm.model;
 
-import java.util.Date;
-
 public class TableInfo {
     /**
     * 序号
@@ -87,7 +85,15 @@ public class TableInfo {
     * 更新日期
     */
     private String updateDate;
+    
+    private String serialNumber;
+    
+    private int pageRow;
+    
+    private int page;
 
+    private String sorting;
+    
     public String getId() {
         return id;
     }
@@ -216,15 +222,50 @@ public class TableInfo {
         this.maintenanceRecords = maintenanceRecords;
     }
 
-	public String getUpdateDate() {
-		return updateDate;
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+	public String getSerialNumber() {
+		return serialNumber;
 	}
 
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 
 
 
+	public String getSorting() {
+		return sorting;
+	}
 
+	public void setSorting(String sorting) {
+		this.sorting = sorting;
+	}
+
+	public int getPageRow() {
+		return pageRow;
+	}
+
+	public void setPageRow(int pageRow) {
+		this.pageRow = pageRow;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+
+
+    
+    
 }

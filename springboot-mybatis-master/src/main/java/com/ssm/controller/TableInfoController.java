@@ -184,6 +184,21 @@ public class TableInfoController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = "/selectmodeuid", method = RequestMethod.POST)
 	@ResponseBody
 	public List<TableInfo> selectmodeuid(@RequestBody String selectallmodel, Model model) {
@@ -232,6 +247,66 @@ public class TableInfoController {
 		return TableInfo;
 
 	}
+	
+	
+
+	
+	
+	@RequestMapping(value ="/selectmodelallpaging", method = RequestMethod.POST)
+	@ResponseBody
+	public List<TableInfo> selectmodelallpaging(@RequestBody String selectallmodel, Model model) {
+	
+
+		
+
+				
+				
+
+
+		List<TableInfo> json = JSON.parseArray(selectallmodel, TableInfo.class);
+
+	
+		List<TableInfo> TableInfo =	tableInfoMapper.SelectTableInfoPage(json.get(0));
+
+		
+		
+		
+		
+		
+				
+	/*	List<TableInfo> TableInfo = this.tableInfoMapper.modelallpaging();*/
+		
+		
+		System.out.println();
+		return TableInfo;
+
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/slTableInfo", method = RequestMethod.POST)
+	@ResponseBody
+
+		public List<TableInfo> slTableInfo(@RequestBody String SelectTableInfo, Model model) {
+		
+		
+		
+		List<TableInfo> json = JSON.parseArray(SelectTableInfo, TableInfo.class);
+		
+		
+		System.out.println(json.get(0));
+		List<TableInfo> TableInfo =tableInfoMapper.SelectTableInfo(json.get(0));
+
+		return TableInfo;
+		
+		
+		
+		
+	}
+	
+	
+	
 	
 	
 	

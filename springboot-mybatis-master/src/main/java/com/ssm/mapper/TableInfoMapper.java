@@ -50,6 +50,9 @@ public interface TableInfoMapper {
 	@Select("SELECT * FROM  table_info")
 	List<TableInfo> modelall();
 	
+
+	
+	
 	@Delete("Delete FROM table_info where table_info.id=#{id}")
 	int Dmouldinfo (@Param("id") String uuid);
 	
@@ -75,7 +78,24 @@ public interface TableInfoMapper {
 	
 	
 	@SelectProvider(type = TableInfoSql.class, method = "SelectTableInfo")  
-	public void SlTableInfo(TableInfo tableInfo);
+	
+	public List<TableInfo> SelectTableInfo(TableInfo tableInfo);
+	
+	@Select("select * from table_info order by  table_info.id limit #{page},#{pageRow}")
+	List<TableInfo> modelallpaging();
+	
+	
+	
+	@SelectProvider(type = TableInfoSql.class, method = "SelectTableInfoPage")  
+	
+	public List<TableInfo> SelectTableInfoPage(TableInfo tableInfo);
+	
+	
+	/*
+	@Select("select * from table_info order by  table_info.id limit #{page},#{pageRow}")
+	
+	public List<TableInfo> SelectTableInfoPage( @Param("page") int page,@Param("pageRow") int pageRow);
+	*/
 	
 	
 	
@@ -100,8 +120,6 @@ public interface TableInfoMapper {
 	
 	public TableInfoMapper findByName(String username);
 
-	
-	
 	
 	
 	

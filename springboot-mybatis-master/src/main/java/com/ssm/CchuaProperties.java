@@ -7,7 +7,7 @@ public class CchuaProperties {
 
 	 private String UpfilePosition;
 	 private String HtmlPosition;
-
+	 private String HtmlPower;
 	public String getUpfilePosition() {
 		return UpfilePosition;
 	}
@@ -22,6 +22,14 @@ public class CchuaProperties {
 
 	public void setHtmlPosition(String htmlPosition) {
 		HtmlPosition = htmlPosition;
+	}
+
+	public String getHtmlPower() {
+		return HtmlPower;
+	}
+
+	public void setHtmlPower(String htmlPower) {
+		HtmlPower = htmlPower;
 	}    
 
 	

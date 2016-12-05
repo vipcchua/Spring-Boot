@@ -108,6 +108,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,"/ssmimg/data/**"
 				,"/insertmodelinfo/**"
 				,"/Rsa/**"
+				,"/VerifySuccess/**"
+				,"/VerifyFailure/**"
+				,"/LogoutSuccess/**"
+				
 				
 				)		
 		.permitAll()
@@ -124,15 +128,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()	
 			
 				.successForwardUrl("/VerifySuccess")
-				.failureForwardUrl("/ValidationFailure")
+			.failureForwardUrl("/VerifyFailure")
 			
 				.loginPage("/login")
 	
 				.permitAll()				
 				.and()
 				.logout()
+				.logoutSuccessUrl("/LogoutSuccess")
 				
-				/*.logoutSuccessUrl("/")*/
 				.permitAll();
 		}
 

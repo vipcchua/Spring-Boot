@@ -83,29 +83,27 @@ public class Myprovider implements AuthenticationProvider {
 
 		List<TableUser> users = tableUserMapper.Loginusers(username);
 
-		/* if (users.size() == 0&& users!=null) { */
+		if (users != null && users.size() > 0) {
+			if (password.equals(users.get(0).getPassword())) {
 
-		System.out.println("SQLpassword:" + users.get(0).getPassword() + "\r\n password:" + password);
-		
-	
+				/*
+				 * RSAUtil.decryptStr(users.get(0).getPassword(), g.toString());
+				 */
 
-		/* } */
+				List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-		
-		if (password.equals(users.get(0).getPassword())) {
+				/* authorities.add(new SimpleGrantedAuthority("USER")); */
+				authorities.add(new SimpleGrantedAuthority(users.get(0).getRole()));
 
-			/* RSAUtil.decryptStr(users.get(0).getPassword(), g.toString()); */
+				return new UsernamePasswordAuthenticationToken(users.get(0).getUsername(), users.get(0).getPassword(),
+						authorities);
+			}
+			else {
+				System.out.println("User.is unknow");
+				throw new UsernameNotFoundException("not found");
+			}
 
-			List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-			/*authorities.add(new SimpleGrantedAuthority("USER"));*/
-			authorities.add(new SimpleGrantedAuthority(users.get(0).getRole()));
-			
-			return new UsernamePasswordAuthenticationToken(users.get(0).getUsername(), users.get(0).getPassword(),
-					authorities);
-
-		}	
-	else{
+		} else {
 			System.out.println("User.is unknow");
 			throw new UsernameNotFoundException("not found");
 		}

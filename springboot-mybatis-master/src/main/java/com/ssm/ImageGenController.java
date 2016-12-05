@@ -20,7 +20,7 @@ public class ImageGenController {
     @RequestMapping(value="/toImg")
     public String toImg(){
 
-        return "image/image";
+        return "image/image";       
     }
 
 

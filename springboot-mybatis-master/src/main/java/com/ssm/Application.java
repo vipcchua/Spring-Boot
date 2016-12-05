@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -35,13 +37,25 @@ import javax.sql.DataSource;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-@ComponentScan
-
+/*@ComponentScan*/
+/*
+@ComponentScan(basePackages = {"com.ssm.strategy.MyAuthenticationSuccessHandler"})*/
+/*
+@EntityScan("com.ssm.strategy")*/
 @EnableConfigurationProperties({CchuaProperties.class,CchuaProperties.class})    
+
 
 
 @MapperScan("com.ssm.mapper")
 /* @Component("Application") */
+
+
+
+
+
+
+
+
 public class Application {
 	private static Logger logger = Logger.getLogger(Application.class);
 

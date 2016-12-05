@@ -32,6 +32,14 @@ public class HtmlStart {
 	    public String hello() {
 		        return "test";
 		    }
+	    
+	    @RequestMapping("/LoginSuccrss")
+	    public String LoginSuccrss() {
+		        return "LoginSuccrss";
+		    }
+		    
+	    
+
 		    
 	    
 	    

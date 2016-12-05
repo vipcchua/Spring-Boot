@@ -1,5 +1,10 @@
 package com.ssm.strategy;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +15,31 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
+
 import com.ssm.strategy.*;
+
 
 @Configurable
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	
+
+	
 	@Autowired
 	private Myprovider provider;
+	/*@Autowired
+	private MyAuthenticationSuccessHandler authSuccessHandler;*/
+	
+	
+	 
 	
 	
 	@Autowired
@@ -29,12 +50,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*@Autowired
 	private UserDetailsService userDetailsService;*/
-	
+	 
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{
 	}
 	
-	
+			
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -51,7 +72,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,StaticParams.PATHREGX.data
 				,StaticParams.PATHREGX.Image).permitAll()//无需访问权限
 		
-
 	.antMatchers(StaticParams.PATHREGX.ADMIN)
 		.hasAuthority(StaticParams.USERROLE.ADMIN)//admin角色访问权限
 		
@@ -75,9 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.authorizeRequests()
-		.antMatchers(
-
-				
+		.antMatchers(			
 				StaticParams.PATHREGX.API
 				, StaticParams.PATHREGX.CSS
 				,StaticParams.PATHREGX.JS
@@ -91,37 +109,59 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,"/insertmodelinfo/**"
 				,"/Rsa/**"
 				
-				)
-		
-		
+				)		
 		.permitAll()
-
 		.antMatchers(StaticParams.PATHREGX.ADMIN)
-			.hasAuthority(StaticParams.USERROLE.ADMIN)//admin角色访问权限
+			.hasAuthority(StaticParams.USERROLE.ADMIN)
 			
 			.antMatchers(StaticParams.PATHREGX.VIEW)
-			.hasAuthority(StaticParams.USERROLE.USER)//user角色访问权限
+			.hasAuthority(StaticParams.USERROLE.USER)
 		
 				.anyRequest()
 				.authenticated()
 				.and()
 				
-				.formLogin()
+				.formLogin()	
+			
+				.successForwardUrl("/VerifySuccess")
+				.failureForwardUrl("/ValidationFailure")
+			
 				.loginPage("/login")
-				
+	
 				.permitAll()				
 				.and()
 				.logout()
+				
+				/*.logoutSuccessUrl("/")*/
 				.permitAll();
+		}
+
+		
+	/*	
+		http
+		.authorizeRequests()
+			.antMatchers("/", "/about","/public/**").permitAll()
+			.anyRequest().fullyAuthenticated()
+			.and()
+		.formLogin()
+			.usernameParameter("sec-user")
+			.passwordParameter("sec-password")
+		
+			.permitAll()
+			.and()
+		.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/")
+			
+			.deleteCookies("remember-me", "JSESSIONID")
+			.permitAll()
+			.and()
+		.rememberMe();
+}
 		
 		
 		
-		
-		
-		
-		
-		
-		
+		*/
 		
 		
 		
@@ -155,14 +195,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
              .permitAll();
 		*/
 		
-		
-	}
 	
-	
-	   @Override
-	    public void configure(WebSecurity web) throws Exception {
-	        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**", "/**/favicon.ico");
-	    }
+	 
+	   
+	   
+	   
+	   
+	   
+	   
+	   
+	   
 
 	
 

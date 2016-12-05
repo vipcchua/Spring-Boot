@@ -39,6 +39,7 @@ public interface UserMapper {
     
     @Delete("DELETE FROM user WHERE name=#{id}")
     List<User> deletename(String name);
-    
+
+
     
 }

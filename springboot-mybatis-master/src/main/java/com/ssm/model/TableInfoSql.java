@@ -200,9 +200,125 @@ public class TableInfoSql {
 		
 	}
 	
+	public String SelectTableInfoPage(final TableInfo tableInfo) {
+		
+		
+		
+	String SelectTableInfoPage = 	new SQL() {
+			{  
+			SELECT("*");  
+			FROM("table_info");  
+			
+			if (tableInfo.getId() != null) {
+				WHERE("id = #{id}");
+			}
+			
+			
+			if (tableInfo.getMouldNumber() != null) {
+				WHERE("table_info.mould_number like CONCAT('%',#{mouldNumber},'%')");
+			
+			}
+		
+			if (tableInfo.getRfid() != null) {
+				WHERE("table_info.rfid like CONCAT('%',#{mouldNumber},'%')");
+			}
+			if (tableInfo.getProductName()!= null) {
+				WHERE("table_info.product_name like CONCAT('%',#{productName},'%')");
+			}
+			if (tableInfo.getCustomerName() != null) {
+				WHERE("table_info.customer_name likeCONCAT('%', #{customerName},'%')");
+			}
+			
+			if (tableInfo.getCavityNumber() != null) {
+				WHERE("table_info.cavity_number like CONCAT('%',#{cavityNumber},'%')");
+			}
+			if (tableInfo.getApplicableModels() != null) {
+				WHERE("table_info.applicable_models like CONCAT('%',#{applicableModels},'%')");
+			}
+			if (tableInfo.getUseRequirements() != null) {
+				WHERE("table_info.use_requirements like CONCAT('%',#{useRequirements},'%')");
+			}
+			
+			if (tableInfo.getMouldLife() != null) {
+				WHERE("table_info.mould_life like CONCAT('%',#{mouldLife},'%')");
+			}
+			
+			if (tableInfo.getStatus() != null) {
+				WHERE("table_info.status like CONCAT('%',#{status},'%')");
+			}
+			
+			if (tableInfo.getRemarks() != null) {
+				WHERE("table_info.remarks like CONCAT('%',#{remarks},'%')");
+			}	
+			
+			
+			
+			
+			
+			if (tableInfo.getUpdateDate() != null) {
+				WHERE("table_info.update_date like CONCAT('%',#{updateDate},'%')");
+			}
+			
+			
+			if (tableInfo.getMouldPictures() != null) {
+				WHERE("table_info.mould_pictures like CONCAT('%',#{mouldPictures},'%')");
+			}
+			
+			
+			
+			
+			
+			if (tableInfo.getMouldingTable() != null) {
+				WHERE("table_info.moulding_table like CONCAT('%',#{mouldingTable},'%')");
+			}
+			
+			
+			if (tableInfo.getMaterialInfo() != null) {
+				WHERE("table_info.material_info like CONCAT('%',#{materialInfo},'%')");
+			}
+			
+			
+			if (tableInfo.getOperationGuiding() != null) {
+				WHERE("table_info.operation_guiding like CONCAT('%',#{operationGuiding},'%')");
+			}
+			
+			
+			if (tableInfo.getMaintenanceRecords() != null) {
+				WHERE("table_info.maintenance_records like CONCAT('%',#{maintenanceRecords},'%')");
+			}
+			
+			
+			
+
+			if (tableInfo.getSerialNumber() != null) {
+				WHERE("table_info.serial_number like CONCAT('%',#{serialNumber},'%')");
+			}
+			
+			
+			if (tableInfo.getSorting() != null) {
+				 ORDER_BY("#{sorting}");
+			}
+			
+			
+		
+			
+
+			 
 	
+			}
+			}
+		.toString();  
+		
+		String page = " limit #{page},#{pageRow}";
+
+		SelectTableInfoPage = SelectTableInfoPage + page ;
 	
+		System.out.println(SelectTableInfoPage);
+		return SelectTableInfoPage;
+		
+	}
 	
+	/*
 	
 	public String SelectTableInfoPage(final TableInfo tableInfo) {
 		
@@ -299,7 +415,12 @@ public class TableInfoSql {
 			}
 			
 			
-			 ORDER_BY("#{sorting}");
+			if (tableInfo.getSorting() != null) {
+				 ORDER_BY("#{sorting}");
+			}
+			
+			
+		
 			
 
 			 
@@ -317,7 +438,7 @@ public class TableInfoSql {
 		
 	}
 	
-	
+	*/
 	
 	
 	
@@ -353,7 +474,7 @@ public String InsertTableInfo(final TableInfo tableInfo) {
 		
 		
 		if (tableInfo.getMouldNumber() != null) {
-			VALUES("table_info.mould_number ", " #{mouldNumber}");
+			VALUES("table_info.mould_number ", "#{mouldNumber}");
 			
 	
 		}

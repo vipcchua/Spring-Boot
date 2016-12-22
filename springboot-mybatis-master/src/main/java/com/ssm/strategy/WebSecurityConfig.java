@@ -95,6 +95,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf()
 		.disable()
 		.authorizeRequests()
+	
 		.antMatchers(			
 				StaticParams.PATHREGX.API
 				, StaticParams.PATHREGX.CSS
@@ -111,10 +112,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,"/VerifySuccess/**"
 				,"/VerifyFailure/**"
 				,"/LogoutSuccess/**"
+				,"/SelectComPany/**"
+				
+		
+				,"/SelectComPany/**"
+				
+				,"/getSysManageLoginCode/**"
+				,"/checkimagecode/**"
+				
+				,"/validateColorServlet/**"
+				,"/checkCodeservlet/**"
+				
+				,"/file/**"
 				
 				
-				)		
+				)/*无需权限就可以之星的页面*/
+		
+		
+		
 		.permitAll()
+		
+		  .antMatchers("/file").access("hasRole('ADMIN')")/*需要权限为ADMIN*/
+		  .antMatchers("/file","/xxx").access("hasRole('USER')")/*需要权限为User*/
+		  
+		
+		
 		.antMatchers(StaticParams.PATHREGX.ADMIN)
 			.hasAuthority(StaticParams.USERROLE.ADMIN)
 			
@@ -128,15 +150,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()	
 			
 				.successForwardUrl("/VerifySuccess")
-			.failureForwardUrl("/VerifyFailure")
+				.failureForwardUrl("/VerifyFailure")
 			
 				.loginPage("/login")
 	
 				.permitAll()				
 				.and()
-				.logout()
-				.logoutSuccessUrl("/LogoutSuccess")
-				
+				.logout()	/*默认范文logout会退出*/
+				.invalidateHttpSession(true)/*表示是否要在退出登录后让当前 session 失效，默认为 true 。*/
+				.deleteCookies("JSESSIONID")/*指定退出登录后需要删除的 cookie 名称，多个 cookie 之间以逗号分隔。*/
+				.logoutSuccessUrl("/login")/*返回登录页*/
+			
 				.permitAll();
 		}
 

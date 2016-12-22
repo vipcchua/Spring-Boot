@@ -1,4 +1,4 @@
-package com.ssm;
+package com.ssm.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
@@ -30,21 +29,18 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.ssm.CchuaProperties;
 
 import net.minidev.json.JSONObject;
 
 @Controller
 public class FileUploadController {
-	 @Autowired  
-	 CchuaProperties CchuaProperties;
+	@Autowired
+	CchuaProperties CchuaProperties;
 
 	@ResponseBody
 	@RequestMapping(value = "/batch/upload", method = RequestMethod.POST)
 
-
-  
-
-	
 	public String batchFileUpload(HttpServletRequest request) throws IllegalStateException, IOException {
 		JSONObject filename = new JSONObject();
 		List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
@@ -107,24 +103,19 @@ public class FileUploadController {
 				 * 
 				 * System.out.println(suffix);
 				 */
-
 				String fileName = file.getOriginalFilename();
 				String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
 				System.out.println(prefix);
 
-				position = CchuaProperties.getUpfilePosition()+"/doc/";
-				
-		
-				
-				
+				position = CchuaProperties.getUpfilePosition() + CchuaProperties.getUpfiledoc();
+				System.out.println(position);
 				for (String pre : prefixs) {
 					if (StringUtils.equals(pre, prefix)) {
-						position = CchuaProperties.getUpfilePosition()+"/img/";
+						position = CchuaProperties.getUpfilePosition() + CchuaProperties.getUpfileimg();
 						break;
 					}
 
 				}
-
 				/*
 				 * 
 				 * System.out.print("File:::" + file.getOriginalFilename());
@@ -136,11 +127,10 @@ public class FileUploadController {
 				if (!file.isEmpty()) {
 					try {
 						filename.put("Name" + i, name.toString());/* 把名字记录到一个对象里面 */
-						filenames.add(name.toString()+"."+prefix);
+						filenames.add(name.toString() + "." + prefix);
 
 						System.out.print("FilesssssssssnNewName:" + name);/* 获取源文件的名字 */
 						BufferedOutputStream stream = new BufferedOutputStream(
-
 								new FileOutputStream(new File(position + name + "." + prefix)));
 
 						/*
@@ -166,31 +156,31 @@ public class FileUploadController {
 	}
 
 	/* 单文件上传 */
-	@RequestMapping("/upload")
+	@RequestMapping("/uploadlogos")
 	@ResponseBody
-	public String handleFileUpload(
-
-			/* @RequestParam("file") MultipartFile file */
-
-			@RequestParam(value = "selectallmodel", required = true) MultipartFile file
-
-	) {
+	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
 
 		JSONObject filename = new JSONObject();
-
-		System.out.print(file.getOriginalFilename());
+		String Upfilename;
+		/* System.out.print(file.getOriginalFilename()); */
 
 		UUID uuid = UUID.randomUUID();
 		UUID name = uuid;
 		if (!file.isEmpty()) {
 			try {
-
+				String position = CchuaProperties.getUpfilePosition() + CchuaProperties.getUpfilecompanyinfo();
+				System.out.println(position);
+				String fileName = file.getOriginalFilename();
+				String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
+				System.out.println(prefix);
+				Upfilename = name + "." + prefix;
 				BufferedOutputStream out = new BufferedOutputStream(
-						new FileOutputStream(new File("F:/ssmimg/" + name)));
+						new FileOutputStream(new File(position + Upfilename)));
 				filename.put("Name", name.toString());
 				out.write(file.getBytes());
 				out.flush();
 				out.close();
+
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 				return "上传失败," + e.getMessage();
@@ -198,18 +188,54 @@ public class FileUploadController {
 				e.printStackTrace();
 				return "上传失败," + e.getMessage();
 			}
-			return "上传成功";
+
+			String tname = Upfilename.toString();
+			return tname;
 		} else {
-			return "上传失败，因为文件是空的.";
+			return "error";
 		}
 	}
 	
+	
+	
+	@RequestMapping("/uploadlogo")
+	@ResponseBody
+	public String uploadlogo(@RequestParam("file") MultipartFile file) {
 
-	
-	
-	
-	
-	
+		JSONObject filename = new JSONObject();
+		String Upfilename;
+		/* System.out.print(file.getOriginalFilename()); */
+
+		if (!file.isEmpty()) {
+			try {
+				String position = CchuaProperties.getUpfilePosition() + CchuaProperties.getUpfilecompanyinfo();
+				System.out.println(position);
+				String fileName = file.getOriginalFilename();
+				String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
+				System.out.println(prefix);
+				Upfilename = "logo" + "." + prefix;
+				BufferedOutputStream out = new BufferedOutputStream(
+						new FileOutputStream(new File(position + Upfilename)));
+				/*filename.put("Name", name.toString());*/
+				out.write(file.getBytes());
+				out.flush();
+				out.close();
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				return "上传失败," + e.getMessage();
+			} catch (IOException e) {
+				e.printStackTrace();
+				return "上传失败," + e.getMessage();
+			}
+
+		/*	String tname = Upfilename.toString();*/
+			String tname = "Success";
+			return tname;
+		} else {
+			return "error";
+		}
+	}
 	
 
 }

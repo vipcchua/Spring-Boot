@@ -15,6 +15,7 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -37,31 +38,25 @@ import javax.sql.DataSource;
 
 @EnableAutoConfiguration
 @SpringBootApplication
-/*@ComponentScan*/
+/* @ComponentScan */
 /*
-@ComponentScan(basePackages = {"com.ssm.strategy.MyAuthenticationSuccessHandler"})*/
+ * @ComponentScan(basePackages =
+ * {"com.ssm.strategy.MyAuthenticationSuccessHandler"})
+ */
 /*
-@EntityScan("com.ssm.strategy")*/
-@EnableConfigurationProperties({CchuaProperties.class,CchuaProperties.class})    
-
-
+ * @EntityScan("com.ssm.strategy")
+ */
+@EnableConfigurationProperties({ CchuaProperties.class, CchuaProperties.class })
 
 @MapperScan("com.ssm.mapper")
 /* @Component("Application") */
 
-
-
-
-
-
-
-
 public class Application {
 	private static Logger logger = Logger.getLogger(Application.class);
 
-	 @Autowired  
-	 CchuaProperties CchuaProperties;
-	
+	@Autowired
+	CchuaProperties CchuaProperties;
+
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
 	public DataSource dataSource() {
@@ -80,7 +75,10 @@ public class Application {
 		sqlSessionFactoryBean.getObject().getConfiguration().setMapUnderscoreToCamelCase(
 				true);/* 自动支持驼峰 table_Aaa -->--tableaaa */
 
-		/*sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mybatis/*.xml"));*/
+		/*
+		 * sqlSessionFactoryBean.setMapperLocations(resolver.getResources(
+		 * "classpath:/mybatis/*.xml"));
+		 */
 		return sqlSessionFactoryBean.getObject();
 	}
 
@@ -122,77 +120,72 @@ public class Application {
 		return factory.createMultipartConfig();
 	}
 
-//	@Configuration
-//	public class MvcConfiguration extends WebMvcConfigurerAdapter {
-//
-//		@Override
-//		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//			registry.addResourceHandler("/ssmimg/**").addResourceLocations("classpath:/ssmimg/");
-//			super.addResourceHandlers(registry);
-//		}
-//
-//
-//	}
-	
-	
+	// @Configuration
+	// public class MvcConfiguration extends WebMvcConfigurerAdapter {
+	//
+	// @Override
+	// public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	// registry.addResourceHandler("/ssmimg/**").addResourceLocations("classpath:/ssmimg/");
+	// super.addResourceHandlers(registry);
+	// }
+	//
+	//
+	// }
 
 	@Configuration
 	public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			registry.addResourceHandler("/ssmimg/**").addResourceLocations("file:" +CchuaProperties.getUpfilePosition());
+			registry.addResourceHandler("/ssmimg/**")
+					.addResourceLocations("file:" + CchuaProperties.getUpfilePosition());
 			super.addResourceHandlers(registry);
+		}
 	}
-	}
-	
-	
+
 	@Configuration
 	public class MyHtml extends WebMvcConfigurerAdapter {
 
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			registry.addResourceHandler("/**").addResourceLocations("file:" +CchuaProperties.getHtmlPosition());
+			registry.addResourceHandler("/**").addResourceLocations("file:" + CchuaProperties.getHtmlPosition());
 			super.addResourceHandlers(registry);
+		}
 	}
+
+	@Bean
+	public EmbeddedServletContainerCustomizer containerCustomizer() {
+		return new EmbeddedServletContainerCustomizer() {
+			@Override
+			public void customize(ConfigurableEmbeddedServletContainer container) {
+				container.setSessionTimeout(1800);// 单位为S
+			}
+		};
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
+/*	
 	 @Bean
-	 public EmbeddedServletContainerCustomizer containerCustomizer(){
-	        return new EmbeddedServletContainerCustomizer() {
-	            @Override
-	            public void customize(ConfigurableEmbeddedServletContainer container) {
-	                 container.setSessionTimeout(1800);//单位为S
-	           }
-	     };
-	 }
+	    public ServletRegistrationBean servletRegistrationBean() {
+			return null;
+
+	    }
+*/
 	
 	
 	
 	
-/*	 @SpringBootApplication  
-	 @EnableConfigurationProperties({FileUploadController.class,FileUploadController.class})  
-	 public class DemoApplication {  
-	   
-	    
-	 }  
+
+	/*
+	 * @SpringBootApplication
+	 * 
+	 * @EnableConfigurationProperties({FileUploadController.class,
+	 * FileUploadController.class}) public class DemoApplication {
+	 * 
+	 * 
+	 * }
 	 */
-	 
-	 
-	 
-	 
-	
-	
-	
 
 	/**
 	 * Start
@@ -203,7 +196,7 @@ public class Application {
 		logger.info("Author:Cchua");
 		logger.info("GitHub:https://github.com/vipcchua");
 		logger.info("Blog:weibo.com/vipcchua");
-		logger.info("EndUpdate:2016年12月5日09:51:39");
+		logger.info("EndUpdate:2016年12月13日15:30:45");
 	}
 
 }

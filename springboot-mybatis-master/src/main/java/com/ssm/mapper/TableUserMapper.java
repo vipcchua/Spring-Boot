@@ -29,7 +29,9 @@ public interface TableUserMapper {
 
 	@Select("SELECT * FROM table_user where username = #{username}")
 	List<TableUser> Loginusers (@Param("username") String username);
-
+	
+	@Select("SELECT id,username,name,role,enabled FROM table_user where username = #{username}")
+	List<TableUser> UserInfo (@Param("username") String username);
 	
 	
 	

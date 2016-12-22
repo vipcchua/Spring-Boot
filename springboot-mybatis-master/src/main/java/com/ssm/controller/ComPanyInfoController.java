@@ -40,8 +40,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.ssm.Application;
+import com.ssm.mapper.ComPanyMapper;
 import com.ssm.mapper.TableInfoMapper;
 import com.ssm.mapper.TableUserMapper;
+import com.ssm.model.CompanyInfo;
 import com.ssm.model.TableInfo;
 import com.ssm.model.TableUser;
 
@@ -49,46 +51,45 @@ import com.ssm.model.TableUser;
  * http://localhost:8080//hhh?name=d62&age=23
  */
 @Controller
-public class TableIUserController {
+public class ComPanyInfoController {
 
 	private static SqlSessionFactory sqlSessionFactory;
 	/* private Logger logger = Logger.getLogger(TableInfoController.class); */
 
 	@Autowired
-	private TableUserMapper tableUserMapper;
+	private ComPanyMapper  comPanyMapper;
 	@Resource
 	private Application application;
 
-	/* 在用 */
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+
+
+	@RequestMapping("/SelectComPany")
 	@ResponseBody
-	public List<TableUser> selectmodel(@RequestBody String users, Model model) {
-
-
-		
-
-		List<TableUser> user = tableUserMapper.Loginuser();
-
+	public List<CompanyInfo> selectmodelall(
+			@RequestParam(value = "selectallmodel", required = false) String selectmodelall, Model model) {
+		List<CompanyInfo> user = comPanyMapper.selectcomoanty();
+		System.out.println();
 		return user;
-	}
-	
-	/* 在用 */
-	@RequestMapping(value = "/UserInfo", method = RequestMethod.POST)
-	@ResponseBody
-	public List<TableUser> Loginusers(@RequestBody String UserInfo, Model model) {
 
-
-		List<TableUser> json = JSON.parseArray(UserInfo, TableUser.class);
-
-		List<TableUser> user = tableUserMapper.UserInfo(json.get(0).getUsername());
-
-		return user;
 	}
 	
 	
 	
+
 	
-	
+	@RequestMapping("/udComPany")
+	@ResponseBody
+	public List<CompanyInfo> udComoany(@RequestBody String udComoany, Model model) {
+
+		String jsonStr = "[{'id':'5488b55d-7be0-48a2-acea-6683df775fd7','mouldNumber':'13'}]";
+
+		List<CompanyInfo> json = JSON.parseArray(udComoany, CompanyInfo.class);
+
+		comPanyMapper.UpCompanyInfo(json.get(0));
+
+		return json;
+
+	}
 	
 	
 	

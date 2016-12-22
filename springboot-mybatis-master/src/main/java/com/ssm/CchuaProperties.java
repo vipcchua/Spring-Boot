@@ -8,6 +8,36 @@ public class CchuaProperties {
 	 private String UpfilePosition;
 	 private String HtmlPosition;
 	 private String HtmlPower;
+	 private String Upfiledoc;
+	 private String Upfileimg;
+	 private String Upfilecompanyinfo;
+	 
+	 
+	 
+	public String getUpfiledoc() {
+		return Upfiledoc;
+	}
+
+	public void setUpfiledoc(String upfiledoc) {
+		Upfiledoc = upfiledoc;
+	}
+
+	public String getUpfileimg() {
+		return Upfileimg;
+	}
+
+	public void setUpfileimg(String upfileimg) {
+		Upfileimg = upfileimg;
+	}
+
+	public String getUpfilecompanyinfo() {
+		return Upfilecompanyinfo;
+	}
+
+	public void setUpfilecompanyinfo(String upfilecompanyinfo) {
+		Upfilecompanyinfo = upfilecompanyinfo;
+	}
+
 	public String getUpfilePosition() {
 		return UpfilePosition;
 	}

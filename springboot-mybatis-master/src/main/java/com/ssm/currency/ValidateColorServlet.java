@@ -1,143 +1,147 @@
 package com.ssm.currency;
 
-import java.awt.Color;  
-import java.awt.Font;  
-import java.awt.Graphics2D;  
-import java.awt.image.BufferedImage;  
-import java.io.IOException;  
-import java.util.Random;  
-  
-import javax.imageio.ImageIO;  
-import javax.servlet.ServletException;  
-import javax.servlet.ServletOutputStream;  
-import javax.servlet.http.HttpServlet;  
-import javax.servlet.http.HttpServletRequest;  
-import javax.servlet.http.HttpServletResponse;  
-  
+
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- * 验证码Servlet，返回验证码图片，并且把验证码的值放入session中
- * 
- * @author tuxianchao
- * 
- */
-public class ValidateColorServlet extends HttpServlet {
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.util.Random;
+
+import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class ValidateColorServlet {
+    private Random random = new Random();
+    private String randString = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";// 随机产生的字符串
+
+    private int width = 80;// 图片宽
+    private int height = 26;// 图片高
+    private int lineSize = 40;// 干扰线数量
+    private int stringNum = 4;// 随机产生字符数量
+
+    /*
+     * 获得字体
+     */
+    private Font getFont() {
+        return new Font("Fixedsys", Font.CENTER_BASELINE, 18);
+    }
+
+    /*
+     * 获得颜色
+     */
+    private Color getRandColor(int fc, int bc) {
+        if (fc > 255)
+            fc = 255;
+        if (bc > 255)
+            bc = 255;
+        int r = fc + random.nextInt(bc - fc - 16);
+        int g = fc + random.nextInt(bc - fc - 14);
+        int b = fc + random.nextInt(bc - fc - 18);
+        return new Color(r, g, b);
+    }
+
+    /*
+     * 绘制字符串
+     */
+    private String drowString(Graphics g, String randomString, int i) {
+        g.setFont(getFont());
+        g.setColor(new Color(random.nextInt(101), random.nextInt(111), random
+                .nextInt(121)));
+        String rand = String.valueOf(getRandomString(random.nextInt(randString
+                .length())));
+        randomString += rand;
+        g.translate(random.nextInt(3), random.nextInt(3));
+        g.drawString(rand, 13 * i, 16);
+        return randomString;
+    }
+
+    /*
+     * 绘制干扰线
+     */
+    private void drowLine(Graphics g) {
+        int x = random.nextInt(width);
+        int y = random.nextInt(height);
+        int xl = random.nextInt(13);
+        int yl = random.nextInt(15);
+        g.drawLine(x, y, x + xl, y + yl);
+    }
+
+    /*
+     * 获取随机的字符
+     */
+    public String getRandomString(int num) {
+        return String.valueOf(randString.charAt(num));
+    }
+
 
     /**
-     * 
+     * 生成随机图片
      */
-    private static final long serialVersionUID = 1L;
+    public void getRandcode(HttpServletRequest request,HttpServletResponse response,String key) {
 
-    public static final String CHECK_CODE_KEY = "CHECK_CODE_KEY";
+        // BufferedImage类是具有缓冲区的Image类,Image类是用于描述图像信息的类
+        BufferedImage image = new BufferedImage(width, height,BufferedImage.TYPE_INT_BGR);
+        Graphics g = image.getGraphics();// 产生Image对象的Graphics对象,改对象可以在图像上进行各种绘制操作
+        g.fillRect(0, 0, width, height);
+        g.setFont(new Font("Times New Roman", Font.ROMAN_BASELINE, 18));
+        g.setColor(getRandColor(110, 133));
+        // 绘制干扰线
+        for (int i = 0; i <= lineSize; i++) {
+            drowLine(g);
+        }
+        // 绘制随机字符
+        String randomString = "";
+        for (int i = 1; i <= stringNum; i++) {
+            randomString = drowString(g, randomString, i);
+        }
+        //1：将随机生成的验证码放入Cookie中
+        Cookie cookie = new Cookie(key,randomString);
+        response.addCookie(cookie);
+        //2：将随机生成的验证码放入session中
+        String sessionid = request.getSession().getId();
+        request.getSession().setAttribute(sessionid+key, randomString);
+        System.out.println("*************" + randomString);
 
-    // 验证码图片的宽度, 高度, 验证码的个数
-    private int width = 152;
-    private int height = 40;
-    private int codeCount = 4;
-
-    // 验证码字体的高度
-    private int fontHeight = 4;
-
-    // 验证码中的单个字符基线. 即：验证码中的单个字符位于验证码图形左上角的 (codeX, codeY) 位置处
-    private int codeX = 0;
-    private int codeY = 0;
-
-    // 验证码由哪些字符组成
-    char[] codeSequence = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz23456789"
-            .toCharArray();
-
-    // 初始化验证码图形属性
-    public void init() {
-        fontHeight = height - 2;
-        codeX = width / (codeCount + 2);
-        codeY = height - 4;
+        //总结：这两种方式都不是很好，
+        //（1）：使用cookie的方式，将验证码发送到前台浏览器，不安全！不建议使用。
+        //（2）：使用session的方式，虽然能解决验证码不发送到浏览器，安全性较高了，但是如果用户量太大，这样的存储方式会对服务器造成压力，影响服务器的性能。不建议使用。
+        //这里暂时实现用这种方式，好的办法是，在项目中使用的缓存，将生成的验证码存放到缓存中，设置失效时间，这样既可以实现安全性也能减轻服务器的压力。
+        g.dispose();
+        try {
+            ByteArrayOutputStream tmp = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", tmp);
+            tmp.close();
+            Integer contentLength = tmp.size();
+            response.setHeader("content-length", contentLength + "");
+            response.getOutputStream().write(tmp.toByteArray());// 将内存中的图片通过流动形式输出到客户端
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            try {
+                response.getOutputStream().flush();
+                response.getOutputStream().close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
     }
 
-    public void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 定义一个类型为 BufferedImage.TYPE_INT_BGR 类型的图像缓存
-        BufferedImage buffImg = null;
-        buffImg = new BufferedImage(width, height, BufferedImage.TYPE_3BYTE_BGR);
-
-        // 在 buffImg 中创建一个 Graphics2D 图像
-        Graphics2D graphics = null;
-        graphics = buffImg.createGraphics();
-
-        // 设置一个颜色, 使 Graphics2D 对象的后续图形使用这个颜色
-        graphics.setColor(Color.WHITE);
-
-        // 填充一个指定的矩形: x - 要填充矩形的 x 坐标; y - 要填充矩形的 y 坐标; width - 要填充矩形的宽度; height
-        // - 要填充矩形的高度
-        graphics.fillRect(0, 0, width, height);
-
-        // 创建一个 Font 对象: name - 字体名称; style - Font 的样式常量; size - Font 的点大小
-        Font font = null;
-        font = new Font("", Font.BOLD, fontHeight);
-        // 使 Graphics2D 对象的后续图形使用此字体
-        graphics.setFont(font);
-
-        graphics.setColor(Color.BLACK);
-
-        // 绘制指定矩形的边框, 绘制出的矩形将比构件宽一个也高一个像素
-        graphics.drawRect(0, 0, width - 1, height - 1);
-
-        // 随机产生 100 条干扰线,
-        Random random = null;
-        random = new Random();
-        graphics.setColor(Color.GREEN);
-        for (int i = 0; i < 100; i++) {
-            int x = random.nextInt(width);
-            int y = random.nextInt(height);
-            int x1 = random.nextInt(20);
-            int y1 = random.nextInt(20);
-            graphics.drawLine(x, y, x + x1, y + y1);
-        }
-
-        // 创建 randomCode 对象, 用于保存随机产生的验证码, 以便用户登录后进行验证
-        StringBuffer randomCode;
-        randomCode = new StringBuffer();
-
-        for (int i = 0; i < codeCount; i++) {
-            // 得到随机产生的验证码数字
-            String strRand = null;
-            strRand = String.valueOf(codeSequence[random.nextInt(36)]);
-
-            // 把正在产生的随机字符放入到 StringBuffer 中
-            randomCode.append(strRand);
-
-            // 用随机产生的颜色将验证码绘制到图像中
-            graphics.setColor(Color.BLUE);
-            graphics.drawString(strRand, (i + 1) * codeX, codeY);
-        }
-
-        // 再把存放有所有随机字符的 StringBuffer 对应的字符串放入到 HttpSession 中
-        request.getSession()
-                .setAttribute(CHECK_CODE_KEY, randomCode.toString());
-
-        System.out.println("产生的验证码---" + randomCode.toString());
-
-        // 禁止图像缓存
-        response.setHeader("Pragma", "no-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setDateHeader("Expires", 0);
-
-        // 将图像输出到输出流中
-        ServletOutputStream sos = null;
-        sos = response.getOutputStream();
-        ImageIO.write(buffImg, "jpeg", sos);
-        sos.close();
-    }
 }

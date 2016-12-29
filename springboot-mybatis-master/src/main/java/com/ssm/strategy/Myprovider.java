@@ -26,8 +26,10 @@ import com.rails.core.frame.security.userdetails.MyUserDetails;
 import com.rails.core.frame.security.userdetails.MyUserDetailsService;
 */
 import com.ssm.mapper.TableUserMapper;
+import com.ssm.model.InterfaceData;
 import com.ssm.model.TableUser;
-
+import com.alibaba.fastjson.JSON;
+import com.mysql.cj.core.exceptions.PasswordExpiredException;
 import com.ssm.currency.AesUtils;
 
 @Component
@@ -56,56 +58,75 @@ public class Myprovider implements AuthenticationProvider {
 		 * "UTF-8");
 		 */
 
-		String rsausername = authentication.getPrincipal().toString();
+		CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails(); // 如上面的介绍，这里通过authentication.getDetails()获取详细信息
 
-		String rsapassword = authentication.getCredentials().toString();
+		System.out.println(details.getCodecookies());
+		System.out.println(details.getToken());
 
-		try {
-			rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");
-			rsapassword = AesUtils.aesDecrypt(rsapassword, "abcdefgabcdefghi");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		if (details.getCodecookies().equalsIgnoreCase(details.getToken())) {
 
-		String username = RSAUtils.decryptBase64(rsausername);
-		/* username.replaceAll("\"",""); */
+			String rsausername = authentication.getPrincipal().toString();
 
-		String password = RSAUtils.decryptBase64(rsapassword);
+			String rsapassword = authentication.getCredentials().toString();
 
-		JSONObject usernameobj = new JSONObject(username.toString()); // 在这里转换。
-		JSONObject passwordobj = new JSONObject(password.toString()); // 在这里转换。
-
-		username = usernameobj.get("username").toString();
-		password = passwordobj.get("password").toString();
-
-		System.out.println("username:" + username + "\r\n password:" + password);
-
-		List<TableUser> users = tableUserMapper.Loginusers(username);
-
-		if (users != null && users.size() > 0) {
-			if (password.equals(users.get(0).getPassword())) {
-
-				/*
-				 * RSAUtil.decryptStr(users.get(0).getPassword(), g.toString());
-				 */
-
-				List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
-				/* authorities.add(new SimpleGrantedAuthority("USER")); */
-				authorities.add(new SimpleGrantedAuthority(users.get(0).getRole()));
-
-				return new UsernamePasswordAuthenticationToken(users.get(0).getUsername(), users.get(0).getPassword(),
-						authorities);
+			try {
+				rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");
+				rsapassword = AesUtils.aesDecrypt(rsapassword, "abcdefgabcdefghi");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else {
+
+			String username = RSAUtils.decryptBase64(rsausername);
+			/* username.replaceAll("\"",""); */
+
+			String password = RSAUtils.decryptBase64(rsapassword);
+
+			JSONObject usernameobj = new JSONObject(username.toString()); // 在这里转换。
+			JSONObject passwordobj = new JSONObject(password.toString()); // 在这里转换。
+
+			username = usernameobj.get("username").toString();
+			password = passwordobj.get("password").toString();
+
+			System.out.println("username:" + username + "\r\n password:" + password);
+
+			List<TableUser> users = tableUserMapper.Loginusers(username);
+
+			if (users != null && users.size() > 0) {
+				if (password.equals(users.get(0).getPassword())) {
+					System.out.println("该用户登陆成功");
+					/*
+					 * RSAUtil.decryptStr(users.get(0).getPassword(),
+					 * g.toString());
+					 */
+
+					List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
+					/* authorities.add(new SimpleGrantedAuthority("USER")); */
+					authorities.add(new SimpleGrantedAuthority(users.get(0).getRole()));
+
+					return new UsernamePasswordAuthenticationToken(users.get(0).getUsername(),
+							users.get(0).getPassword(), authorities);
+
+				} else {
+					System.out.println("User.is unknow");
+					throw new PasswordExpiredException("Error Password");
+					
+					
+					
+				}
+
+			} else {
 				System.out.println("User.is unknow");
-				throw new UsernameNotFoundException("not found");
+				throw new UsernameNotFoundException("Error User");
 			}
 
 		} else {
-			System.out.println("User.is unknow");
-			throw new UsernameNotFoundException("not found");
+			System.out.println("验证码错误");
+			throw new UsernameNotFoundException("Error Code");
+			
+		
+		
 		}
 
 	}

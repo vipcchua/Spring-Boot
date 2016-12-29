@@ -1,28 +1,51 @@
 package com.ssm.controller;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ssm.currency.RandomValidateCode;
+import com.ssm.model.InterfaceData;
+import com.ssm.model.TableInfo;
 
 
 @Controller
 public class ImageGenController {
- 
- 
-    @RequestMapping(value="/toImg")
+
+
+	String Usersession;
+	
+	
+	
+    public String getUsersession() {
+		return Usersession;
+	}
+
+
+	public void setUsersession(String usersession) {
+		Usersession = usersession;
+	}
+
+
+	@RequestMapping(value="/toImg")
     public String toImg(){
- 
+
         return "image/image";
     }
- 
- 
+
+
     //登录获取验证码
     @RequestMapping("/getSysManageLoginCode")
     @ResponseBody
@@ -41,7 +64,7 @@ public class ImageGenController {
         }
         return "";
     }
- 
+
     //验证码验证
     @RequestMapping(value = "/checkimagecode")
     @ResponseBody
@@ -56,15 +79,52 @@ public class ImageGenController {
                 break;
             }
         }
+        
+
         //1:获取session验证码的信息
         //String code1 = (String) request.getSession().getAttribute("");
         //2:判断验证码是否正确
+        
+		String sessuoncode=(String)request.getSession().getAttribute("code");
+		
+		
+		System.out.println(sessuoncode);
+        
         if(!StringUtils.isEmpty(validateCode) && validateCode.equals(code)){
             return "ok";    
- 
+
         }
         return "error";
         //这里我没有进行字母大小模糊的验证处理，感兴趣的你可以去试一下！
     }
- 
+    
+    
+    
+    
+    
+    
+	@RequestMapping("/validateCode")
+	@ResponseBody
+	public String validateCode(HttpServletRequest request,@RequestBody String validateCode) {
+
+
+		List<InterfaceData> json = JSON.parseArray(validateCode, InterfaceData.class);
+		String	systemcookie = json.get(0).getSessionCode();
+		String cookies=request.getSession().getAttribute("code").toString();
+		
+	
+	    if(systemcookie.equalsIgnoreCase(cookies)){
+            return "ok";    
+
+        }
+	    else {
+	    	 return "Code error";
+		}
+       
+   
+
+	}
+    
+
+
 }

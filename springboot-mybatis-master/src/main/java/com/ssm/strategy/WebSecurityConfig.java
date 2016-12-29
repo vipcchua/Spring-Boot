@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.security.authentication.AuthenticationDetailsSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
@@ -40,15 +42,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	 
-	
+	   @Autowired
+	    private AuthenticationDetailsSource<HttpServletRequest, WebAuthenticationDetails> authenticationDetailsSource;
+
 	
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
 	
 	@Autowired
 	DataSource dataSource;
-
-	/*@Autowired
+	
+	   
+	   /*@Autowired
 	private UserDetailsService userDetailsService;*/
 	 
 	@Autowired
@@ -124,6 +129,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,"/checkCodeservlet/**"
 				
 				,"/file/**"
+				,"/mould/**"
+				,"/validateCode/**"
+				
+				
 				
 				
 				)/*无需权限就可以之星的页面*/
@@ -148,11 +157,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				
 				.formLogin()	
-			
+
+				.loginPage("/login")
 				.successForwardUrl("/VerifySuccess")
 				.failureForwardUrl("/VerifyFailure")
+				  .authenticationDetailsSource(authenticationDetailsSource)
 			
-				.loginPage("/login")
 	
 				.permitAll()				
 				.and()

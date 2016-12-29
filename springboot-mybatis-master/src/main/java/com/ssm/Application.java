@@ -192,11 +192,15 @@ public class Application {
 	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-		logger.info("SpringBoot Start Success");
-		logger.info("Author:Cchua");
-		logger.info("GitHub:https://github.com/vipcchua");
-		logger.info("Blog:weibo.com/vipcchua");
-		logger.info("EndUpdate:2016年12月13日15:30:45");
+		logger.info("SpringBoot Start Success\n");
+		logger.info("Author:Cchua\n");
+		logger.info("GitHub:https://github.com/vipcchua\n");
+		logger.info("Blog:weibo.com/vipcchua\n");
+		logger.info("Backstage Versions:2.2\n");
+		logger.info("Code Versions:3.2\n");
+		logger.info("EndUpdate:2016年12月13日15:30:45\n");
+		logger.info("Welcome to use this System");
+		
 	}
 
 }

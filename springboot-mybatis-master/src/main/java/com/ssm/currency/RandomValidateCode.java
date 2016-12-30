@@ -102,7 +102,7 @@ public class RandomValidateCode {
 		String sessionid = request.getSession().getId();
 		request.getSession().setAttribute(sessionid + key, randomString);
 		
-		request.getSession().setAttribute("code", randomString);
+		request.getSession().setAttribute("ValidateCode", randomString);
 		
 		
 		System.out.println("*************" + randomString + "sess:" + sessionid);

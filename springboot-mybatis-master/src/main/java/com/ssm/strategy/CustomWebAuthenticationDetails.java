@@ -13,35 +13,78 @@ public class CustomWebAuthenticationDetails extends WebAuthenticationDetails {
 	 * 
 	 */
 	private static final long serialVersionUID = 6975601077710753878L;
-	private final String token;
-	String Codecookies ;
+	
+	
+	private final String Interface;
+	
+	
+	String SessionCode ;
 	public CustomWebAuthenticationDetails(HttpServletRequest request) {
 		super(request);
-		token = request.getParameter("token");
+		
+		Interface = request.getParameter("Interface");
 
-		Codecookies = request.getSession().getAttribute("code").toString();
+		SessionCode = request.getSession().getAttribute("ValidateCode").toString();
 	}
 
-	public String getToken() {
-		return token;
-	}
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
 	
 	
 
 
 
-	protected String getCodecookies() {
-		return Codecookies;
+
+
+	public String getInterface() {
+		return Interface;
 	}
 
-	protected void setCodecookies(String codecookies) {
-		Codecookies = codecookies;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public String getSessionCode() {
+		return SessionCode;
+	}
+
+	public void setSessionCode(String sessionCode) {
+		SessionCode = sessionCode;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append(super.toString()).append("Token: ").append(this.getToken());
-		return sb.toString();
+		StringBuilder data = new StringBuilder();
+		data.append(super.toString()).append("Interface: ").append(this.getInterface());
+		return data.toString();
 	}
 }

@@ -60,10 +60,10 @@ public class Myprovider implements AuthenticationProvider {
 
 		CustomWebAuthenticationDetails details = (CustomWebAuthenticationDetails) authentication.getDetails(); // 如上面的介绍，这里通过authentication.getDetails()获取详细信息
 
-		System.out.println(details.getCodecookies());
-		System.out.println(details.getToken());
+		System.out.println(details.getSessionCode());
+		System.out.println(details.getInterface());
 
-		if (details.getCodecookies().equalsIgnoreCase(details.getToken())) {
+		if (details.getSessionCode().equalsIgnoreCase(details.getInterface())) {
 
 			String rsausername = authentication.getPrincipal().toString();
 

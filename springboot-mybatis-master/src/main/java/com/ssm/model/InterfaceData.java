@@ -3,17 +3,8 @@ package com.ssm.model;
 public class InterfaceData {
 
     String SessionCode;
-    String token;
-
     
-    
-	protected String getToken() {
-		return token;
-	}
-
-	protected void setToken(String token) {
-		this.token = token;
-	}
+String Interface;
 
 	public String getSessionCode() {
 		return SessionCode;
@@ -22,7 +13,16 @@ public class InterfaceData {
 	public void setSessionCode(String sessionCode) {
 		SessionCode = sessionCode;
 	}
+
+	public String getInterface() {
+		return Interface;
+	}
+
+	public void setInterface(String interface1) {
+		Interface = interface1;
+	}
     
+	
 	
 	
 	

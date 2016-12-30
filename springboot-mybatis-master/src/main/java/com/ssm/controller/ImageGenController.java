@@ -1,4 +1,5 @@
 package com.ssm.controller;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -65,11 +66,11 @@ public class ImageGenController {
         return "";
     }
 
-    //验证码验证
+
     @RequestMapping(value = "/checkimagecode")
     @ResponseBody
     public String checkTcode(HttpServletRequest request,HttpServletResponse response) {
-        String validateCode = request.getParameter("validateCode");
+        String validateCode = request.getParameter("ValidateCode");
         String code = null;
         //1:获取cookie里面的验证码信息
         Cookie[] cookies = request.getCookies();
@@ -85,10 +86,10 @@ public class ImageGenController {
         //String code1 = (String) request.getSession().getAttribute("");
         //2:判断验证码是否正确
         
-		String sessuoncode=(String)request.getSession().getAttribute("code");
+		String session=(String)request.getSession().getAttribute("ValidateCode");
 		
 		
-		System.out.println(sessuoncode);
+		System.out.println(session);
         
         if(!StringUtils.isEmpty(validateCode) && validateCode.equals(code)){
             return "ok";    
@@ -99,7 +100,7 @@ public class ImageGenController {
     }
     
     
-    
+    //验证码验证
     
     
     
@@ -109,8 +110,8 @@ public class ImageGenController {
 
 
 		List<InterfaceData> json = JSON.parseArray(validateCode, InterfaceData.class);
-		String	systemcookie = json.get(0).getSessionCode();
-		String cookies=request.getSession().getAttribute("code").toString();
+		String	systemcookie = json.get(0).getInterface();
+		String cookies=request.getSession().getAttribute("ValidateCode").toString();
 		
 	
 	    if(systemcookie.equalsIgnoreCase(cookies)){
@@ -118,7 +119,36 @@ public class ImageGenController {
 
         }
 	    else {
-	    	 return "Code error";
+	    	
+	    	
+	    	  Enumeration<String> em = request.getSession().getAttributeNames();
+	    	
+	    	          while (em.hasMoreElements()) {
+	    	 
+	    	              request.getSession().removeAttribute(em.nextElement().toString());
+	    	
+	    	          }
+	    	
+	    	          request.getSession().removeAttribute("da");
+	    	
+	    	 
+	    	       
+	    	
+	    	
+	    	
+	    	
+	    	
+	
+	    	
+	    	
+	    	
+	    	
+	    	 return "Code error";	
+	    	 
+	    	 
+	    	 
+	    	 
+	    	 
 		}
        
    

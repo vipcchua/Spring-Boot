@@ -1,4 +1,4 @@
-package com.ssm.service;
+package com.ssm.currency;
 
 import java.io.ByteArrayOutputStream;
 import java.math.BigInteger;
@@ -21,7 +21,7 @@ import javax.crypto.Cipher;
  * RSA 工具类。提供加密，解密，生成密钥对等方法。 需要到http://www.bouncycastle.org下载bcprov-jdk14-123.jar。
  * 
  */
-public class RSAUtils {
+public class RSAUtil {
     /**
      * * 生成密钥对 *
      * 

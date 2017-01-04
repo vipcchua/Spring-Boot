@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.ssm.service.RSAUtils;
+import com.ssm.currency.RSAUtil;
 
 
 
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
      */
     public void makeKV(HttpServletRequest request) {
         try {
-            KeyPair kp = RSAUtils.generateKeyPair();
+            KeyPair kp = RSAUtil.generateKeyPair();
             RSAPublicKey rsap = (RSAPublicKey) kp.getPublic();
             String module = rsap.getModulus().toString(16);
             String empoent = rsap.getPublicExponent().toString(16);
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             // 解密
             String pwd = request.getParameter("pwd");
             byte[] en_result = new BigInteger(pwd, 16).toByteArray();
-            byte[] de_result = RSAUtils.decrypt(privKey, en_result);
+            byte[] de_result = RSAUtil.decrypt(privKey, en_result);
 
             StringBuffer sb = new StringBuffer();
             sb.append(new String(de_result));

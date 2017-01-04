@@ -15,9 +15,10 @@ import com.ssm.currency.RSAUtils;
 import com.ssm.model.TableInfo;
 
 import net.minidev.json.JSONObject;
+import springfox.documentation.annotations.ApiIgnore;
 
 
-
+@ApiIgnore
 @Controller
 public class SecurityController {
 	
@@ -51,6 +52,16 @@ public class SecurityController {
 	}
 	
 	
+	@RequestMapping("/Rsa")
+    @ResponseBody
+	public JSONObject getRSAPublicKey(){
+		JSONObject result = new JSONObject();	
+		String thePubKey=RSAUtils.generateBase64PublicKey();	
+		result.put("thePubKey", thePubKey);
+		return result;
+					
+		
+	}
 	
 	
 	

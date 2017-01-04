@@ -29,9 +29,11 @@ import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import com.ssm.mapper.TableInfoMapper;
+
 import com.ssm.model.TableInfo;
 import com.ssm.model.User;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.MultipartConfigElement;
 import javax.sql.DataSource;
@@ -46,7 +48,10 @@ import javax.sql.DataSource;
 /*
  * @EntityScan("com.ssm.strategy")
  */
+
+
 @EnableConfigurationProperties({ CchuaProperties.class, CchuaProperties.class })
+@EnableSwagger2             //启动swagger注解
 
 @MapperScan("com.ssm.mapper")
 /* @Component("Application") */

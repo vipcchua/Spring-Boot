@@ -105,7 +105,7 @@ public class RandomValidateCode {
 		request.getSession().setAttribute("ValidateCode", randomString);
 		
 		
-		System.out.println("*************" + randomString + "sess:" + sessionid);
+		System.out.println("Code:" + randomString + ",sessionid:" + sessionid);
 
 		// 总结：这两种方式都是很好，
 		// （1）：使用cookie的方式，将验证码发送到前台浏览器，不安全！不建议使用。

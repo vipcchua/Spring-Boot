@@ -47,9 +47,13 @@ import com.ssm.model.CompanyInfo;
 import com.ssm.model.TableInfo;
 import com.ssm.model.TableUser;
 
+import io.swagger.annotations.Api;
+
 /**
  * http://localhost:8080//hhh?name=d62&age=23
  */
+@Api(value = "公司信息表", description = "公司信息的相关操作")
+
 @Controller
 public class ComPanyInfoController {
 

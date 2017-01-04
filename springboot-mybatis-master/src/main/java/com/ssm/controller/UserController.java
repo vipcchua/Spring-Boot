@@ -17,10 +17,13 @@ import com.ssm.mapper.UserMapper;
 import com.ssm.model.TableInfo;
 import com.ssm.model.User;
 
+import springfox.documentation.annotations.ApiIgnore;
+
 /**
  * http://localhost:8080//hhh?name=d62&age=23
  */
 @Controller
+@ApiIgnore
 public class UserController {
 
 	private Logger logger = Logger.getLogger(UserController.class);

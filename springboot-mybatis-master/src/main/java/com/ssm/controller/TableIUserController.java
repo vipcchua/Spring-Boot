@@ -43,12 +43,20 @@ import com.ssm.Application;
 import com.ssm.mapper.TableInfoMapper;
 import com.ssm.mapper.TableUserMapper;
 import com.ssm.model.TableInfo;
+import com.ssm.model.TableProduction;
 import com.ssm.model.TableUser;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * http://localhost:8080//hhh?name=d62&age=23
  */
 @Controller
+@Api(value = "用户信息表", description = "用户信息的相关操作")
+
 public class TableIUserController {
 
 	private static SqlSessionFactory sqlSessionFactory;
@@ -60,23 +68,35 @@ public class TableIUserController {
 	private Application application;
 
 	/* 在用 */
+
+	  @ApiOperation(value = "查询所有用户信息", notes = "无条件查询所有的用户信息", response = TableProduction.class) 
+		
+	   @ApiResponses({
+	       @ApiResponse(code=400,message="请求参数没填好"),
+	        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	   })
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	@ResponseBody
 	public List<TableUser> selectmodel(@RequestBody String users, Model model) {
-
-
-		
 
 		List<TableUser> user = tableUserMapper.Loginuser();
 
 		return user;
 	}
+
+	
+	
+	  @ApiOperation(value = "使用用户名查询用户信息", notes = "使用用户名查询用户所有信息", response = TableProduction.class) 
+		
+	   @ApiResponses({
+	       @ApiResponse(code=400,message="请求参数没填好"),
+	        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	   })
 	
 	/* 在用 */
 	@RequestMapping(value = "/UserInfo", method = RequestMethod.POST)
 	@ResponseBody
 	public List<TableUser> Loginusers(@RequestBody String UserInfo, Model model) {
-
 
 		List<TableUser> json = JSON.parseArray(UserInfo, TableUser.class);
 
@@ -84,15 +104,6 @@ public class TableIUserController {
 
 		return user;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	private String uuid() {
 		String uuid = UUID.randomUUID().toString();

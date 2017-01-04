@@ -32,7 +32,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.ssm.CchuaProperties;
 
 import net.minidev.json.JSONObject;
-
+import springfox.documentation.annotations.ApiIgnore;
+@ApiIgnore
 @Controller
 public class FileUploadController {
 	@Autowired

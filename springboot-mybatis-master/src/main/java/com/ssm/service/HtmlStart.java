@@ -22,6 +22,14 @@ public class HtmlStart {
         return "index";
 	    }
 	  
+	  @RequestMapping("/swagger")
+	    public String swagger() {
+      return "swagger";
+	    }
+	  
+	  
+	 
+	  
 	  
 	    @RequestMapping("/file")
 	    public String file() {

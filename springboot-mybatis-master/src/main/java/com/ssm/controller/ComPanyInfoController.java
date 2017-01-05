@@ -45,14 +45,18 @@ import com.ssm.mapper.TableInfoMapper;
 import com.ssm.mapper.TableUserMapper;
 import com.ssm.model.CompanyInfo;
 import com.ssm.model.TableInfo;
+import com.ssm.model.TableProduction;
 import com.ssm.model.TableUser;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * http://localhost:8080//hhh?name=d62&age=23
  */
-@Api(value = "公司信息表", description = "公司信息的相关操作")
+@Api(value = "公司基本信息表", description = "公司信息的相关操作")
 
 @Controller
 public class ComPanyInfoController {
@@ -65,7 +69,12 @@ public class ComPanyInfoController {
 	@Resource
 	private Application application;
 
-
+	   @ApiOperation(value = "查询用户的所有信息", notes = "直接查询", response = TableProduction.class) 
+		
+	   @ApiResponses({
+	       @ApiResponse(code=400,message="请求参数没填好"),
+	        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	   })
 
 	@RequestMapping("/SelectComPany")
 	@ResponseBody
@@ -79,6 +88,12 @@ public class ComPanyInfoController {
 	
 	
 	
+	   @ApiOperation(value = "修改的所有信息", notes = "修改用户的基本信息", response = TableProduction.class) 
+		
+	   @ApiResponses({
+	       @ApiResponse(code=400,message="请求参数没填好"),
+	        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	   })
 
 	
 	@RequestMapping("/udComPany")

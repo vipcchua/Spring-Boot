@@ -201,8 +201,8 @@ public class Application {
 		logger.info("Author:Cchua\n");
 		logger.info("GitHub:https://github.com/vipcchua\n");
 		logger.info("Blog:weibo.com/vipcchua\n");
-		logger.info("Backstage Versions:3.0\n");
-		logger.info("Code Versions:4,0\n");
+		logger.info("Backstage Versions:3.2\n");
+		logger.info("Code Versions:4.4\n");
 		logger.info("EndUpdate:2016年12月13日15:30:45\n");
 		logger.info("Welcome to use this System");
 		

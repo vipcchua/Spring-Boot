@@ -30,6 +30,15 @@ public interface TableProductionMapper {
 	@Select("SELECT * FROM  table_production")
 	List<TableProduction> productionall();
 	
+	
+	@Select("SELECT * FROM  table_production limit #{page},#{pageRow}")
+	List<TableProduction> productionallpage(@Param("page") int page,@Param("pageRow")  int pagerow);
+	
+	
+	@SelectProvider(type = TableProductionSql.class, method = "SelectTableProductionPage")  
+	public List<TableProduction> SelectTableProductionPage(TableProduction tableProduction);
+	
+	
 
 /*--------------- -----<----*增加*---->--- ----------------------*/
 	

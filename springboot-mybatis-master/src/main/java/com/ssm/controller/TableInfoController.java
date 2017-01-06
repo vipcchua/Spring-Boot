@@ -269,7 +269,7 @@ public class TableInfoController {
 
 	}
 
-	@ApiOperation(value = "查询所有模具信息并分页", notes = "分页返回所有模具信息，并且按照选择排序方式", response = TableInfo.class)
+	@ApiOperation(value = "模糊查询所有模具信息并分页", notes = "分页返回所有模具信息，并且按照选择排序方式", response = TableInfo.class)
 	@RequestMapping(value = "/selectmodelallpaging", method = RequestMethod.POST)
 	@ResponseBody
 	public List<TableInfo> selectmodelallpaging(@RequestBody String selectmodelallpaging, Model model) {
@@ -291,7 +291,7 @@ public class TableInfoController {
 
 	})
 	@ApiResponses({ @ApiResponse(code = 400, message = "请求参数没填好"),
-			@ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对") })
+	@ApiResponse(code = 404, message = "请求路径没有或页面跳转路径不对") })
 
 	@RequestMapping(value = "/slTableInfo", method = RequestMethod.POST)
 	@ResponseBody

@@ -38,8 +38,29 @@ public class TableProduction {
     private Date createDate;
 
     private Date updateDate;
+    
+    private int pageRow;
+    
+    private int page;
+    
 
-    public String getProductionId() {
+    public int getPageRow() {
+		return pageRow;
+	}
+
+	public void setPageRow(int pageRow) {
+		this.pageRow = pageRow;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public String getProductionId() {
         return productionId;
     }
 

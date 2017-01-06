@@ -117,4 +117,108 @@ public class TableProductionSql {
 	
 	
 	
+	
+	
+	public String SelectTableProductionPage(final TableProduction tableProduction) {
+
+		String SelectTableProductionPage = new SQL() {
+			{
+				SELECT("*");
+				FROM("table_production");
+
+			
+				
+				
+				
+				
+				if (tableProduction.getProductionId() != null) {
+	
+					
+					WHERE("table_production.production_id like CONCAT('%',#{productionId},'%')");
+					
+				}
+
+				
+				
+				if (tableProduction.getOrderNumber() != null) {
+
+					
+					WHERE("table_production.order_number like CONCAT('%',#{orderNumber},'%')");
+					
+				}
+
+				if (tableProduction.getMouldNumber() != null) {
+		
+					WHERE("table_production.mould_number like CONCAT('%',#{mouldNumber},'%')");
+				}
+				
+				if (tableProduction.getProductionLifenumber() != null) {
+
+					WHERE("table_production.production_lifeNumber like CONCAT('%',#{productionLifenumber},'%')");
+				}
+				
+				if (tableProduction.getProductionMaintain() != null) {
+			
+					WHERE("table_production.production_maintain like CONCAT('%',#{productionMaintain},'%')");
+				}
+				
+				if (tableProduction.getProductionModify() != null) {
+			
+					WHERE("table_production.production_modify like CONCAT('%',#{productionModify},'%')");
+				}
+				
+				
+				
+				if (tableProduction.getProductionTime() != null) {
+			
+					WHERE("table_production.production_time like CONCAT('%',#{productionTime},'%')");
+				}
+				
+				if (tableProduction.getCreateDate() != null) {
+	
+					WHERE("table_production.create_date like CONCAT('%',#{createDate},'%')");
+				}
+
+				if (tableProduction.getUpdateDate() != null) {
+		
+					WHERE("table_production.update_date like CONCAT('%',#{updateDate},'%')");
+				}
+				
+			
+
+			}
+		}.toString();
+
+		String page = " limit #{page},#{pageRow}";
+
+		SelectTableProductionPage = SelectTableProductionPage + page;
+
+		System.out.println(SelectTableProductionPage);
+		return SelectTableProductionPage;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -136,16 +136,68 @@ public class TableProductionController {
 	@RequestMapping("/selectProductionAll")
 	@ResponseBody
 	public List<TableProduction> selectmodelall(
-			@RequestParam(value = "selectallmodel", required = false) String selectmodelall, Model model) {
+			@RequestParam(value = "selectProductionAll", required = false) String selectmodelall, Model model) {
+		   
+		   
+		   
 		List<TableProduction> TableInfo = this.tableProductionMapper.productionall();
 
 		return TableInfo;
 
 	}
+	   
+	   
+	   @ApiOperation(value = "查询所有生产信息并且分页", notes = "查询生产的所有信息 分页功能") 
+	   @ApiResponses({
+	       @ApiResponse(code=400,message="请求参数没填好"),
+	        @ApiResponse(code=404,message="请求路径没有或页面跳转路径不对")
+	   })
+	@RequestMapping("/selectProductionAllPage")
+	@ResponseBody
+	public List<TableProduction> selectProductionAllPage(@RequestBody String selectmodeid, Model model) {
+
+		   
+			List<TableProduction> json = JSON.parseArray(selectmodeid, TableProduction.class);
+			List<TableProduction> user = tableProductionMapper.productionallpage(json.get(0).getPage(),json.get(0).getPageRow());
+		   
+		   
+
+
+		return user;
+
+	}
+	   
+	   
+	   
+	   
+	   
+		@ApiOperation(value = "模糊查询条件筛选出模具订单信息并分页", notes = "模糊查询条件筛选出模具订单信息并分页，并且按照选择排序方式", response = TableProduction.class)
+		@ApiImplicitParams({
+			@ApiImplicitParam(paramType = "header", name = "page", dataType = "int", required = true, value = "分页起始序号", defaultValue = "1"),
+			@ApiImplicitParam(paramType = "header", name = "pageRow", dataType = "int", required = true, value = "刷多少条数据", defaultValue = "2"),	
+	})
+		
+		
+		@RequestMapping(value = "/SelectTableProductionPagem", method = RequestMethod.POST)
+		@ResponseBody
+		public List<TableProduction> SelectTableProductionPagem(@RequestBody String selectmodelallpaging, Model model) {
+
+			List<TableProduction> json = JSON.parseArray(selectmodelallpaging, TableProduction.class);
+
+			List<TableProduction> tableProduction = tableProductionMapper.SelectTableProductionPage(json.get(0));
+
+			/* List<TableInfo> TableInfo = this.tableInfoMapper.modelallpaging(); */
+
+			System.out.println();
+			return tableProduction;
+
+		}
+	   
+	   
 
 	/*--------------- -----<----*增加*---->--- ----------------------*/
 	
-	   @ApiOperation(value = "增加生产信息", notes = "增加生产信息", response = TableProduction.class) 
+	   @ApiOperation(value = "增加生产信息", notes = "增加生产信息 时间请使用毫秒数来增加 例如", response = TableProduction.class) 
 	
 	   @ApiResponses({
 	       @ApiResponse(code=400,message="请求参数没填好"),

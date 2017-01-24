@@ -1,5 +1,13 @@
 package com.ssm;
-
+/*
+ * 
+ * 	
+		Author: Cchua
+		GitHub: https://github.com/vipcchua
+		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * */
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "CchuaProperties")    

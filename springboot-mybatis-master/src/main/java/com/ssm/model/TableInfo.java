@@ -1,5 +1,16 @@
 package com.ssm.model;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 public class TableInfo {
     /**
     * 序号
@@ -45,6 +56,8 @@ public class TableInfo {
     * 模具寿命
     */
     private String mouldLife;
+    
+    private String mouldLifeNumber;
 
     /**
     * 状态
@@ -94,7 +107,42 @@ public class TableInfo {
 
     private String sorting;
     
-    public String getId() {
+    private String repairRecord;
+    
+    private int tableTotal;
+    
+    
+
+
+
+
+
+	public int getTableTotal() {
+		return tableTotal;
+	}
+
+	public void setTableTotal(int tableTotal) {
+		this.tableTotal = tableTotal;
+	}
+
+    
+    public String getMouldLifeNumber() {
+		return mouldLifeNumber;
+	}
+
+	public void setMouldLifeNumber(String mouldLifeNumber) {
+		this.mouldLifeNumber = mouldLifeNumber;
+	}
+
+	public String getRepairRecord() {
+		return repairRecord;
+	}
+
+	public void setRepairRecord(String repairRecord) {
+		this.repairRecord = repairRecord;
+	}
+
+	public String getId() {
         return id;
     }
 

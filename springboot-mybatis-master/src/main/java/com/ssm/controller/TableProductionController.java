@@ -1,5 +1,19 @@
 package com.ssm.controller;
 
+
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
+
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

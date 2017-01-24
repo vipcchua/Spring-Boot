@@ -1,5 +1,16 @@
 package com.ssm.strategy;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;

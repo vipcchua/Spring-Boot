@@ -1,5 +1,16 @@
 package com.ssm.mapper;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import com.ssm.model.TableInfo;
 import com.ssm.model.TableInfoSql;
 
@@ -28,9 +39,18 @@ public interface TableInfoMapper {
 
 		
 	
-	@Select("SELECT * FROM table_info WHERE id = #{id}")
-	List<TableInfo> selectmodeuid (@Param("id") String string);
+/*	@Select("SELECT * FROM table_info WHERE id = #{id}")
+	List<TableInfo> selectmodeuid (@Param("id") String string);*/
 	
+	
+	@Select("SELECT * ,(SELECT count(1) AS counts FROM table_production where table_production.repair_record ='1' AND mould_number = (SELECT table_info.mould_number from table_info where table_info.id = #{id}) ) as 'repair_record',(SELECT   sum(table_production.production_lifeNumber) AS counts  FROM table_production where mould_number = (SELECT table_info.mould_number  from table_info where table_info.id= #{id}) ) as 'mould_lifeNumber' FROM table_info where table_info.id = #{id}")
+	
+	
+	
+	
+	
+	
+	List<TableInfo> selectmodeuid (@Param("id") String string);
 
 	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},"
 			+ "#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
@@ -81,7 +101,7 @@ public interface TableInfoMapper {
 	
 	public List<TableInfo> SelectTableInfo(TableInfo tableInfo);
 	
-	@Select("select * from table_info order by  table_info.id limit #{page},#{pageRow}")
+	@Select("select *,(select COUNT(*) from table_info)as 'table_total' from table_info order by  table_info.id limit #{page},#{pageRow}")
 	List<TableInfo> modelallpaging();
 	
 	

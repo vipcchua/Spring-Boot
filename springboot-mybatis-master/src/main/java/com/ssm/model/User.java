@@ -1,6 +1,17 @@
 package com.ssm.model;
 
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 
 public class User {
 	private Long id;

@@ -23,6 +23,14 @@
 	<dependencies>
 
 
+<!-- Code information -->
+ <!-- Author: Cchua --> 
+ <!-- GitHub: https://github.com/vipcchua -->
+ <!-- Blog  : weibo.com/vipcchua  -->
+
+
+
+
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
 		<dependency>

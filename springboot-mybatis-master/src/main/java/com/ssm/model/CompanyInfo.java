@@ -1,5 +1,16 @@
 package com.ssm.model;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 public class CompanyInfo {
     /**
     * 序号
@@ -10,6 +21,23 @@ public class CompanyInfo {
     
     private String companyLogo;
 
+    private int tableTotal;
+    
+    
+
+
+
+
+
+	public int getTableTotal() {
+		return tableTotal;
+	}
+
+	public void setTableTotal(int tableTotal) {
+		this.tableTotal = tableTotal;
+	}
+
+    
 	public String getId() {
 		return id;
 	}

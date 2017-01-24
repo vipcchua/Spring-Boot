@@ -1,5 +1,16 @@
 package com.ssm.mapper;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import com.ssm.model.User;
 
 import java.util.List;

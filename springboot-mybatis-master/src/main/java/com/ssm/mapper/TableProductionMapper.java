@@ -1,5 +1,16 @@
 package com.ssm.mapper;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import com.ssm.model.TableInfo;
 import com.ssm.model.TableInfoSql;
 import com.ssm.model.TableProduction;
@@ -27,11 +38,11 @@ public interface TableProductionMapper {
 	@Select("SELECT * FROM table_production WHERE production_id = #{productionId}")
 	List<TableProduction> selectproductionid (@Param("productionId") String string);
 	
-	@Select("SELECT * FROM  table_production")
+	@Select("SELECT * FROM   table_production")
 	List<TableProduction> productionall();
 	
 	
-	@Select("SELECT * FROM  table_production limit #{page},#{pageRow}")
+	@Select("SELECT * FROM  table_production order by table_production.production_time limit #{page},#{pageRow}")
 	List<TableProduction> productionallpage(@Param("page") int page,@Param("pageRow")  int pagerow);
 	
 	

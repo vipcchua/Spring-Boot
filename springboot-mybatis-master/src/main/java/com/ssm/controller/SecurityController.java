@@ -1,5 +1,18 @@
 package com.ssm.controller;
 
+
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +60,26 @@ public class SecurityController {
 	public JSONObject LogoutSuccess(){
 		JSONObject LogoutSuccess = new JSONObject();		
 		LogoutSuccess.put("UserLogin","Error Or Fail");
+		return LogoutSuccess;
+					
+	}
+	
+	
+	@RequestMapping("/isadmin")
+	@ResponseBody
+	public JSONObject admin(){
+		JSONObject LogoutSuccess = new JSONObject();		
+		LogoutSuccess.put("UserLogin","admin");
+		System.out.println("ADMIN");
+		return LogoutSuccess;
+					
+	}
+	@RequestMapping("/isuser")
+	@ResponseBody
+	public JSONObject isuser(){
+		JSONObject LogoutSuccess = new JSONObject();		
+		LogoutSuccess.put("UserLogin","isuser");
+		System.out.println("isuser");
 		return LogoutSuccess;
 					
 	}

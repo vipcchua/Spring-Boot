@@ -1,5 +1,16 @@
 package com.ssm.strategy;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.security.web.authentication.WebAuthenticationDetails;

@@ -1,5 +1,16 @@
 package com.ssm.model;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 public class TableUser {
     /**
     * 用户id
@@ -31,13 +42,54 @@ public class TableUser {
     private String enabled;
     
     
+    private String newpassword;
     
     
     
+    private int pageRow;
+    private int page;
+   
+    private int tableTotal;
     
     
 
-    public String getEnabled() {
+
+
+
+
+	public int getTableTotal() {
+		return tableTotal;
+	}
+
+	public void setTableTotal(int tableTotal) {
+		this.tableTotal = tableTotal;
+	}
+
+	public int getPageRow() {
+		return pageRow;
+	}
+
+	public void setPageRow(int pageRow) {
+		this.pageRow = pageRow;
+	}
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	public String getEnabled() {
 		return enabled;
 	}
 

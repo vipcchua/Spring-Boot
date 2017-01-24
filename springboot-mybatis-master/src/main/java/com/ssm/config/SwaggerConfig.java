@@ -1,5 +1,18 @@
 package com.ssm.config;
 
+
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

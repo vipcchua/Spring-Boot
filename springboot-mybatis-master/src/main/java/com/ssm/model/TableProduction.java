@@ -1,5 +1,16 @@
 package com.ssm.model;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import java.util.Date;
 
 public class TableProduction {
@@ -43,6 +54,22 @@ public class TableProduction {
     
     private int page;
     
+    private int tableTotal;
+    
+    
+
+
+
+
+
+	public int getTableTotal() {
+		return tableTotal;
+	}
+
+	public void setTableTotal(int tableTotal) {
+		this.tableTotal = tableTotal;
+	}
+
 
     public int getPageRow() {
 		return pageRow;

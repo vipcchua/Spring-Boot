@@ -1,5 +1,16 @@
 package com.ssm.strategy;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -128,12 +139,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				,"/validateColorServlet/**"
 				,"/checkCodeservlet/**"
 				
-				,"/file/**"
+				
 				,"/mould/**"
 				,"/validateCode/**"
 				
-				
-				
+			
 				
 				)/*无需权限就可以之星的页面*/
 		
@@ -141,8 +151,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		.permitAll()
 		
-		  .antMatchers("/file").access("hasRole('ADMIN')")/*需要权限为ADMIN*/
-		  .antMatchers("/file","/xxx").access("hasRole('USER')")/*需要权限为User*/
+		  .antMatchers("/file"
+				  ,"/UserInsert/**"
+				  ,"/DeleteUserid/**"
+				  ,"/DeleteUserName/**"
+				  ,"/AdminUpdateUser/**"
+				  ,"/UpdateUser/**"
+				  ,"/user/**"
+				  ,"/isadmin/**"
+					,"/Selectalluser/**"
+					,"/SelectalluserNumber/**"
+					,"/Selectallusers/**"
+					
+					
+				 ).access("hasRole('ADMIN')")/*需要权限为用户 ROLE_ADMIN */
+		  
+		  .antMatchers("/file","/xxx",
+				  "/isuser/**"  ).access("hasRole('USER')")/*需要权限为用户 ROLE_USER */
 		  
 		
 		

@@ -1,4 +1,15 @@
 package com.ssm;
+/*
+ * 
+ * 	
+		Author: Cchua
+		GitHub: https://github.com/vipcchua
+		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * */
+
+
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
@@ -201,9 +212,13 @@ public class Application {
 		logger.info("Author:Cchua\n");
 		logger.info("GitHub:https://github.com/vipcchua\n");
 		logger.info("Blog:weibo.com/vipcchua\n");
-		logger.info("Backstage Versions:3.2\n");
-		logger.info("Code Versions:4.4\n");
-		logger.info("EndUpdate:2016年12月13日15:30:45\n");
+		/*后台版本号*/
+		logger.info("Backstage Versions:3.5\n");
+		logger.info("Backstage updateTime:2017年1月4日10:16:10\n");
+		/*代码版信息 */
+		logger.info("Code Versions:4.6.8\n");
+		logger.info("EndUpdate:2017年1月10日15:14:27\n");
+		
 		logger.info("Welcome to use this System");
 		
 	}

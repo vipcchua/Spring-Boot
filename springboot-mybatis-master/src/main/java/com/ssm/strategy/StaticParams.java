@@ -1,5 +1,16 @@
 package com.ssm.strategy;
 
+/*
+ * ****************<--*---Code information---*-->**************
+ * 	
+ *		Author: Cchua
+ *		GitHub: https://github.com/vipcchua
+ *		Blog  : weibo.com/vipcchua
+ * 
+ * 
+ * ************************************************************/
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ssm.CchuaProperties;

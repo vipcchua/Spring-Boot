@@ -37,6 +37,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.InputStream;
 import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -360,9 +362,15 @@ public class TableUserController {
 	@RequestMapping("/AdminUpdateUser")
 	@ResponseBody
 
-	public List<TableUser> AdminUpdateUser(@RequestBody String UserInsert, Model model) {
+	public List<TableUser> AdminUpdateUser(@RequestBody String UserInsert, Model model) throws UnsupportedEncodingException {
 
-		List<TableUser> json = JSON.parseArray(UserInsert, TableUser.class);
+		String decodeStr = URLDecoder.decode(UserInsert.toString(),"UTF-8");
+	
+	
+	
+	
+		
+		List<TableUser> json = JSON.parseArray(decodeStr, TableUser.class);
 
 		String rsausername = json.get(0).getUsername().toString();
 		String rsapassword = json.get(0).getPassword().toString();

@@ -39,19 +39,16 @@ public interface TableInfoMapper {
 
 		
 	
-/*	@Select("SELECT * FROM table_info WHERE id = #{id}")
-	List<TableInfo> selectmodeuid (@Param("id") String string);*/
-	
-	
-	@Select("SELECT * ,(SELECT count(1) AS counts FROM table_production where table_production.repair_record ='1' AND mould_number = (SELECT table_info.mould_number from table_info where table_info.id = #{id}) ) as 'repair_record',(SELECT   sum(table_production.production_lifeNumber) AS counts  FROM table_production where mould_number = (SELECT table_info.mould_number  from table_info where table_info.id= #{id}) ) as 'mould_lifeNumber' FROM table_info where table_info.id = #{id}")
-	
-	
-	
-	
-	
-	
+	@Select("SELECT * FROM table_info WHERE id = #{id}")
 	List<TableInfo> selectmodeuid (@Param("id") String string);
-
+	
+	/*
+	@Select("SELECT * ,(SELECT count(1) AS counts FROM table_production where table_production.repair_record ='1' AND mould_number = (SELECT table_info.mould_number from table_info where table_info.id = #{id}) ) as 'repair_record',(SELECT   sum(table_production.production_lifeNumber) AS counts  FROM table_production where mould_number = (SELECT table_info.mould_number  from table_info where table_info.id= #{id}) ) as 'mould_lifeNumber' FROM table_info where table_info.id = #{id}")
+		List<TableInfo> selectmodeuid (@Param("id") String string);
+*/
+	
+	
+	
 	@Update("UPDATE table_info SET #{mouldNumber},#{rfid},#{productName},#{customerName},"
 			+ "#{cavityNumber}," + "#{applicableModels},#{useRequirements},"
 			+ "#{mouldLife},#{status}," + "#{remarks}  WHERE table_info.id= #{id}")

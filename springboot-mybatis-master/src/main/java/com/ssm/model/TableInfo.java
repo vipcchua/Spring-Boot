@@ -1,5 +1,7 @@
 package com.ssm.model;
 
+import java.sql.Date;
+
 /*
  * ****************<--*---Code information---*-->**************
  * 	
@@ -97,7 +99,7 @@ public class TableInfo {
     /**
     * 更新日期
     */
-    private String updateDate;
+    private Date updateDate;
     
     private String serialNumber;
     
@@ -270,13 +272,15 @@ public class TableInfo {
         this.maintenanceRecords = maintenanceRecords;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
-    }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
+
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 
 	public String getSerialNumber() {
 		return serialNumber;

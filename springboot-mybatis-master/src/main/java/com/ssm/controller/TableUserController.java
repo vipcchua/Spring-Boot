@@ -374,9 +374,13 @@ public class TableUserController {
 
 		String rsausername = json.get(0).getUsername().toString();
 		String rsapassword = json.get(0).getPassword().toString();
+		String rsanewpassword = json.get(0).getNewpassword().toString();
+
+		
 		try {
 			rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");
 			rsapassword = AesUtils.aesDecrypt(rsapassword, "abcdefgabcdefghi");
+			rsanewpassword = AesUtils.aesDecrypt(rsanewpassword, "abcdefgabcdefghi");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -386,15 +390,26 @@ public class TableUserController {
 		/* username.replaceAll("\"",""); */
 
 		rsapassword = RSAUtils.decryptBase64(rsapassword);
-
+		rsanewpassword = RSAUtils.decryptBase64(rsanewpassword);
+		
+		
+		
+		
 		JSONObject usernameobj = new JSONObject(rsausername.toString()); // 在这里转换。
 		JSONObject passwordobj = new JSONObject(rsapassword.toString()); // 在这里转换。
-
+		JSONObject newpasswordobj = new JSONObject(rsanewpassword.toString()); // 在这里转换。
+		
+		
 		rsausername = usernameobj.get("username").toString();
 		rsapassword = passwordobj.get("password").toString();
+		rsanewpassword = newpasswordobj.get("newpassword").toString();
+		
+		
 
 		json.get(0).setUsername(rsausername);
 		json.get(0).setPassword(rsapassword);
+		json.get(0).setNewpassword(rsapassword);
+		
 
 		tableUserMapper.AdminUpdateUser(json.get(0));
 

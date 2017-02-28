@@ -14,6 +14,7 @@ package com.ssm.controller;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.File;
 import java.io.InputStream;
 import java.io.Reader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,6 +130,7 @@ public class TableInfoController {
 
 		json.get(0).setId(uuid());
 
+		json.get(0).setUpdateDate(attime());
 		tableInfoMapper.InsertTableInfo(json.get(0));
 
 		return json;
@@ -326,5 +330,23 @@ public class TableInfoController {
 
 		return uuid;
 	}
-
+	private  String attime()  {
+        Date d = new Date();  
+        System.out.println(d);  
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+        String dateNowStr = sdf.format(d);  
+        System.out.println("格式化后的日期：" + dateNowStr);  
+          
+        String str = "2012-1-13 17:26:33";  //要跟上面sdf定义的格式一样  
+        Date today;
+		try {
+			today = sdf.parse(str);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+      /*  System.out.println("字符串转成日期：" + today);*/
+		return dateNowStr;  
+	}
+    
 }

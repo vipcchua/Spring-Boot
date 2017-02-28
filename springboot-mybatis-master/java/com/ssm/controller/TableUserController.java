@@ -39,6 +39,9 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +77,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.Date;
 
 /**
  * http://localhost:8080//hhh?name=d62&age=23
@@ -366,53 +370,59 @@ public class TableUserController {
 
 		String decodeStr = URLDecoder.decode(UserInsert.toString(),"UTF-8");
 	
-	
-	
-	
-		
 		List<TableUser> json = JSON.parseArray(decodeStr, TableUser.class);
-
-		String rsausername = json.get(0).getUsername().toString();
+	
+	if(json.get(0).getPassword()!=null){
+		/*String rsausername = json.get(0).getUsername().toString();	*/
 		String rsapassword = json.get(0).getPassword().toString();
-		String rsanewpassword = json.get(0).getNewpassword().toString();
-
-		
-		try {
-			rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");
+	/*	String rsanewpassword = json.get(0).getNewpassword().toString();*/
+		try {	
+			/*rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");*/
 			rsapassword = AesUtils.aesDecrypt(rsapassword, "abcdefgabcdefghi");
-			rsanewpassword = AesUtils.aesDecrypt(rsanewpassword, "abcdefgabcdefghi");
+			/*rsanewpassword = AesUtils.aesDecrypt(rsanewpassword, "abcdefgabcdefghi");*/
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		/*rsausername = RSAUtils.decryptBase64(rsausername);*/
+		/* username.replaceAll("\"",""); */
+		rsapassword = RSAUtils.decryptBase64(rsapassword);
+	/*	rsanewpassword = RSAUtils.decryptBase64(rsanewpassword);*/
+	
+	/*	JSONObject usernameobj = new JSONObject(rsausername.toString()); */// 在这里转换。
+		JSONObject passwordobj = new JSONObject(rsapassword.toString()); // 在这里转换。
+	/*	JSONObject newpasswordobj = new JSONObject(rsanewpassword.toString()); */// 在这里转换。	
+		/*rsausername = usernameobj.get("username").toString();*/
+	rsapassword = passwordobj.get("password").toString();
+		/*rsanewpassword = newpasswordobj.get("newpassword").toString();*/
+		/*json.get(0).setUsername(rsausername);*/
+		json.get(0).setPassword(rsapassword);
+		/*json.get(0).setNewpassword(rsanewpassword);*/
+	}
+	
+	if(json.get(0).getUsername()!=null){
+		String rsausername = json.get(0).getUsername().toString();	
+	/*	String rsanewpassword = json.get(0).getNewpassword().toString();*/
+		try {
+			rsausername = AesUtils.aesDecrypt(rsausername, "abcdefgabcdefghi");	
+			/*rsanewpassword = AesUtils.aesDecrypt(rsanewpassword, "abcdefgabcdefghi");*/
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		rsausername = RSAUtils.decryptBase64(rsausername);
 		/* username.replaceAll("\"",""); */
-
-		rsapassword = RSAUtils.decryptBase64(rsapassword);
-		rsanewpassword = RSAUtils.decryptBase64(rsanewpassword);
-		
-		
-		
-		
+	/*	rsanewpassword = RSAUtils.decryptBase64(rsanewpassword);*/
 		JSONObject usernameobj = new JSONObject(rsausername.toString()); // 在这里转换。
-		JSONObject passwordobj = new JSONObject(rsapassword.toString()); // 在这里转换。
-		JSONObject newpasswordobj = new JSONObject(rsanewpassword.toString()); // 在这里转换。
-		
+	/*	JSONObject newpasswordobj = new JSONObject(rsanewpassword.toString()); */// 在这里转换。
 		
 		rsausername = usernameobj.get("username").toString();
-		rsapassword = passwordobj.get("password").toString();
-		rsanewpassword = newpasswordobj.get("newpassword").toString();
+		/*rsanewpassword = newpasswordobj.get("newpassword").toString();*/
 		
-		
-
 		json.get(0).setUsername(rsausername);
-		json.get(0).setPassword(rsapassword);
-		json.get(0).setNewpassword(rsapassword);
-		
+		/*json.get(0).setNewpassword(rsanewpassword);*/
+	}
 
 		tableUserMapper.AdminUpdateUser(json.get(0));
-
 		return json;
 
 	}
@@ -500,5 +510,22 @@ public class TableUserController {
 
 		return uuid;
 	}
+	
+	private static String attime() throws ParseException {
+        Date d = new Date();  
+        System.out.println(d);  
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+        String dateNowStr = sdf.format(d);  
+        System.out.println("格式化后的日期：" + dateNowStr);  
+          
+        String str = "2012-1-13 17:26:33";  //要跟上面sdf定义的格式一样  
+        Date today = sdf.parse(str);  
+        System.out.println("字符串转成日期：" + today);
+		return str;  
+	}
+    
+	
+	
+	
 
 }

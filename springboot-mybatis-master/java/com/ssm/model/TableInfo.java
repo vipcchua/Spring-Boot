@@ -99,7 +99,7 @@ public class TableInfo {
     /**
     * 更新日期
     */
-    private Date updateDate;
+    private String updateDate;
     
     private String serialNumber;
     
@@ -274,11 +274,15 @@ public class TableInfo {
 
 
 
-	public Date getUpdateDate() {
+	
+
+
+
+	public String getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
 	}
 

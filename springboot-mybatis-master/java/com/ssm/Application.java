@@ -10,7 +10,7 @@ package com.ssm;
  * */
 
 
-
+ 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -106,7 +106,7 @@ public class Application {
 	 * 即无需指定namespace）
 	 * 
 	 */
-
+ 
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());

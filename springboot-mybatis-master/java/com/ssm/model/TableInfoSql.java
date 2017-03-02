@@ -248,17 +248,29 @@ public class TableInfoSql {
 					WHERE("table_info.serial_number like CONCAT('%',#{serialNumber},'%')");
 				}
 
-				if (tableInfo.getSorting() != null) {
-					ORDER_BY("#{sorting}");
-				}
-
+				
+/* "#{tosort}"*/
 			}
 		}.toString();
 
+		
+		
+		if (tableInfo.getSorting() != null) {
+			String page = " ORDER BY "+tableInfo.getSorting();
+			SelectTableInfoPage = SelectTableInfoPage + page;
+		}
+		
+		if (tableInfo.getTosort() != null) {
+			String page = " "+tableInfo.getTosort();
+			SelectTableInfoPage = SelectTableInfoPage + page;
+			
+			
+		}
+		
 		String page = " limit #{page},#{pageRow}";
 
+		
 		SelectTableInfoPage = SelectTableInfoPage + page;
-
 		System.out.println(SelectTableInfoPage);
 		return SelectTableInfoPage;
 

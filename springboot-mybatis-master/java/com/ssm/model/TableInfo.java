@@ -113,11 +113,23 @@ public class TableInfo {
     
     private int tableTotal;
     
+    private String tosort;
+    
+
     
 
 
 
 
+
+
+	public String getTosort() {
+		return tosort;
+	}
+
+	public void setTosort(String tosort) {
+		this.tosort = tosort;
+	}
 
 	public int getTableTotal() {
 		return tableTotal;

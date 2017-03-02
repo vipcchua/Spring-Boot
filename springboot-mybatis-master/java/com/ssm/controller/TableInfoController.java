@@ -286,7 +286,7 @@ public class TableInfoController {
 
 	}
 
-	@ApiOperation(value = "模糊查询所有模具信息并分页", notes = "分页返回所有模具信息，并且按照选择排序方式", response = TableInfo.class)
+	@ApiOperation(value = "模糊查询所有模具信息并分页", notes = "分页返回所有模具信息，并且按照选择排序方式 sorting 以数据库字段为标准 ", response = TableInfo.class)
 	@RequestMapping(value = "/selectmodelallpaging", method = RequestMethod.POST)
 	@ResponseBody
 	public List<TableInfo> selectmodelallpaging(@RequestBody String selectmodelallpaging, Model model) {

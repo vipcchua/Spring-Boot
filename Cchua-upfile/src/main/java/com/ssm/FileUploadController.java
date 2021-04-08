@@ -86,11 +86,23 @@ public class FileUploadController {
 				UUID name = uuid;								
 				if (!file.isEmpty()) {
 					try {
-						filename.put("Name" + i, name.toString());/*把名字记录到一个对象里面*/
-						BufferedOutputStream stream = new BufferedOutputStream(
-								new FileOutputStream(new File("F:/ssmimg/" + name + i)));/*一看就知道这是路径啦，不加路径会存到Temp*/
-						stream.write(file.getBytes());
-						stream.close();
+                        String prefix = file.getOriginalFilename().substring
+                                (file.getOriginalFilename().lastIndexOf(".") + 1);
+
+                        String fileName = name.toString();
+                        fileName = fileName.concat(".");
+                        fileName = fileName.concat(prefix);
+                        filename.put("Name" + i, fileName);/*把名字记录到一个对象里面*/
+
+                        String path = "F:/ssmimg/";
+                        path = path.concat(fileName);
+
+                        BufferedOutputStream stream = new BufferedOutputStream(
+                                new FileOutputStream(new File(path)));
+                        /*一看就知道这是路径啦，不加路径会存到Temp*/
+                        stream.write(file.getBytes());
+                        stream.close();
+					
 					} catch (Exception e) {
 						System.out.println("You failed to upload " + filename + " => " + e.getMessage());
 						return "You failed to upload " + filename + " => " + e.getMessage();
